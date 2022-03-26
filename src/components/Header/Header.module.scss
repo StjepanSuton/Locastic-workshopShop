@@ -1,0 +1,32 @@
+@import '../../sass/variables';
+.header-container {
+  z-index: 99;
+  width: 100vw;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-primary;
+  img {
+    padding: 1rem;
+    width: 80px;
+  }
+}
+.cart-info-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-right: 6rem;
+  img {
+    width: 20px;
+  }
+  h6 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 12px;
+  }
+}

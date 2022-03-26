@@ -1,0 +1,32 @@
+.category-container {
+  width: 20%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 2rem;
+  .title {
+    color: #7f7f7f;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 1.5rem;
+    margin-top: 3rem;
+  }
+}
+.categorys {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+  .icon-container {
+    width: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 0.5rem;
+  }
+  .category-title {
+    margin: 0;
+    font-size: 20px;
+    line-height: 125%;
+  }
+}
