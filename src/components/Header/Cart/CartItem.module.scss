@@ -35,6 +35,7 @@
     font-size: 18px;
     line-height: 125%;
     color: #0097cc;
+    background-color: #f2f2f2;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -57,19 +58,6 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 125%;
-  }
-}
-.select-container {
-  display: flex;
-  flex-direction: row;
-
-  select {
-    width: 50px;
-    height: 40px;
-    border: 1px solid #0097cc;
-    box-sizing: border-box;
-    border-radius: 8px;
-    outline: none;
   }
 }
 .delete-icon {

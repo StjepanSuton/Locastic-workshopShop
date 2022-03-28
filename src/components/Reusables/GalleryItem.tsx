@@ -1,10 +1,11 @@
-import Icon from '../../Reusables/Icon'
-import dateIcon from '../../../assets/date.svg'
-import clockIcon from '../../../assets/clock.svg'
+import Icon from './Icon'
+import dateIcon from '../../assets/date.svg'
+import clockIcon from '../../assets/clock.svg'
 import classes from './GalleryItem.module.scss'
 import { motion } from 'framer-motion'
 import { useDispatch } from 'react-redux'
-import { cartActions } from '../../../store/cartStore'
+import { cartActions } from '../../store/cartStore'
+import { useNavigate } from 'react-router'
 interface WorkshopData {
   category: string
   date: string
@@ -17,6 +18,7 @@ interface WorkshopData {
 }
 
 function GalleryItem({ workshop }: { workshop: WorkshopData }) {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const { id, imageUrl, title, price, category, date } = workshop
@@ -29,7 +31,7 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
         title,
         price,
         quantity: 1,
-        totalPrice: workshop.price,
+        totalPrice: price,
       })
     )
   }
@@ -40,7 +42,7 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
       className={classes['gallery-item-container']}
     >
       <div className={classes['image-container']}>
-        <img className={classes.banner} src={imageUrl} alt={title} />
+        <img onClick={() => navigate(`/workshop/${id}`)} className={classes.banner} src={imageUrl} alt={title} />
         <div className={classes['icon-container']}>
           <Icon category={category} classPicker={'icon-shop'} />
         </div>
@@ -56,7 +58,7 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
           </div>
           <h6>{new Date(date).toLocaleTimeString('de-DE').slice(0, 5).replaceAll('/', ':')}</h6>
         </div>
-        <h4>{title}</h4>
+        <h4 onClick={() => navigate(`/workshop/${id}`)}>{title}</h4>
         <h3>
           {price.toFixed(2).replace('.', ',')}
           <span>EUR</span>

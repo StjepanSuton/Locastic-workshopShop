@@ -1,9 +1,9 @@
-import deleteIcon from '../../assets/delete.svg'
+import deleteIcon from '../../../assets/delete.svg'
 import { motion } from 'framer-motion'
 import classes from './CartItem.module.scss'
-import SelectQuantity from '../Reusables/SelectQuantity'
 import { useDispatch } from 'react-redux'
-import { cartActions } from '../../store/cartStore'
+import { cartActions } from '../../../store/cartStore'
+import QuantityDropdown from './QuantityDropdown'
 interface Item {
   id: number
   imageUrl: string
@@ -36,9 +36,7 @@ function CartItem({ item }: { item: Item }) {
       <div className={classes['info-container']}>
         <h4>{title}</h4>
         <div className={classes['quantitiy-container']}>
-          <div className={classes['select-container']}>
-            <SelectQuantity item={item} />
-          </div>
+          <QuantityDropdown item={item} />
           <h3>
             {totalPrice.toFixed(2).replace('.', ',')}
             <span>EUR</span>

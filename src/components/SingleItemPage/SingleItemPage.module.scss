@@ -1,0 +1,46 @@
+.page-container {
+  margin-top: 90px;
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  padding: 2rem 1rem 2rem 1rem;
+}
+.side-page-container {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  img {
+    width: 20px;
+    height: 15px;
+  }
+  h6 {
+    margin: 0;
+    margin-left: 1rem;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 125%;
+  }
+}
+.recomended-container {
+  width: 100%;
+}
+.loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+}
+.error {
+  margin-top: 90px;
+  width: 100vw;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

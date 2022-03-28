@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import classes from './ShopGallery.module.scss'
-import GalleryItem from './GalleryItem'
+import GalleryItem from '../../Reusables/GalleryItem'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 import { AnimatePresence, motion } from 'framer-motion'
+import LoadingSpiner from '../../Reusables/LoadingSpiner'
 
 interface WorkshopData {
   category: string
@@ -44,7 +45,7 @@ function ShopGallery() {
     const getData = async () => {
       setLoading(true)
       try {
-        const response = await fetch('http://localhost:3000/workshops', {})
+        const response = await fetch('http://localhost:3000/workshops')
         const json: WorkshopData[] = await response.json()
         if (!response.ok) {
           throw Error(JSON.stringify(response.status))
@@ -62,22 +63,26 @@ function ShopGallery() {
         )
       } catch (err) {
         setLoading(false)
-        setError('Oops looks like something went wrong try reloading the page \n' + err)
+        setError('Oops looks like something went wrong try reloading the page ' + err)
       }
     }
     getData()
   }, [selectedCategory])
 
   return (
-    <div className={classes['gallery-container']}>
-      <h2>Workshops</h2>
-      <h6>
-        Displayed:<span>{workshops?.length}</span>
-      </h6>
-      {loading === true ? (
-        <p>Loading...</p>
-      ) : (
-        !error && (
+    <>
+      {loading && (
+        <div className={classes.loader}>
+          <LoadingSpiner />
+        </div>
+      )}
+      {error && <h2 className={classes.error}>{error}</h2>}
+      {!loading && !error && (
+        <div className={classes['gallery-container']}>
+          <h2>Workshops</h2>
+          <h6>
+            Displayed:<span>{workshops?.length}</span>
+          </h6>
           <motion.div variants={container} initial="hidden" animate="show" className={classes.gallery}>
             <AnimatePresence>
               {workshops?.slice(0, shownWorkshops).map((workshop) => (
@@ -87,15 +92,16 @@ function ShopGallery() {
               ))}
             </AnimatePresence>
           </motion.div>
-        )
+          {workshops && workshops.length >= shownWorkshops ? (
+            <h4 className={classes['load-more']} onClick={() => setShownWorkShops((prevState) => prevState + 9)}>
+              Load More
+            </h4>
+          ) : (
+            ''
+          )}
+        </div>
       )}
-      {error && <p>{error}</p>}
-      {workshops && workshops.length >= shownWorkshops ? (
-        <h4 onClick={() => setShownWorkShops((prevState) => prevState + 9)}>Load More</h4>
-      ) : (
-        ''
-      )}
-    </div>
+    </>
   )
 }
 

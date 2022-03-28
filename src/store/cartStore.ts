@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, current } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface CartItem {
   id: number
@@ -8,7 +8,6 @@ interface CartItem {
   quantity: number
   totalPrice: number
 }
-
 const storage = localStorage.getItem('locastic-workShop-items')
 const items: CartItem[] = storage === null ? [] : JSON.parse(storage)
 const totalQuantity: number = 0
@@ -20,8 +19,6 @@ export const cartSlice = createSlice({
     addItemsToCart: (state, action: PayloadAction<CartItem>) => {
       const newItem = action.payload
       const existingItem = state.items.find((item) => item.id === newItem.id)
-      state.totalQuantity++
-      state.totalCartPrice = state.totalCartPrice + newItem.price
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
@@ -29,18 +26,41 @@ export const cartSlice = createSlice({
           title: newItem.title,
           price: newItem.price,
           quantity: newItem.quantity,
-          totalPrice: newItem.price,
+          totalPrice: newItem.quantity * newItem.price,
         })
+        state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
+          return previousValue + item.quantity
+        }, 0)
+        state.totalCartPrice = state.items.reduce((previousValue: number, item: CartItem) => {
+          return previousValue + item.totalPrice
+        }, 0)
       } else {
-        existingItem.quantity++
-        existingItem.totalPrice = existingItem.totalPrice + newItem.totalPrice
+        if (existingItem.quantity + newItem.quantity > 99) {
+          existingItem.quantity = 99
+          existingItem.totalPrice = newItem.price * 99
+          state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
+            return previousValue + item.quantity
+          }, 0)
+          state.totalCartPrice = state.items.reduce((previousValue: number, item: CartItem) => {
+            return previousValue + item.totalPrice
+          }, 0)
+        } else {
+          existingItem.quantity = existingItem.quantity + newItem.quantity
+          existingItem.totalPrice = existingItem.totalPrice + newItem.totalPrice
+          state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
+            return previousValue + item.quantity
+          }, 0)
+          state.totalCartPrice = state.items.reduce((previousValue: number, item: CartItem) => {
+            return previousValue + item.totalPrice
+          }, 0)
+        }
       }
     },
     changeItemQuantity: (state, action: PayloadAction<CartItem>) => {
       const newEntry = action.payload
       const existingEntry = state.items.find((item) => item.id === newEntry.id)
       existingEntry!.quantity = newEntry.quantity
-      existingEntry!.totalPrice = existingEntry!.totalPrice + newEntry.totalPrice
+      existingEntry!.totalPrice = newEntry.totalPrice
       state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
         return previousValue + item.quantity
       }, 0)

@@ -1,17 +1,22 @@
 .icon-active {
   width: 18px;
   height: 18px;
-  animation: icon-active 0.5s;
+  animation: icon-active 250ms;
 }
+
 .icon-inactive {
   width: 18px;
   height: 18px;
   filter: brightness(0);
-  animation: icon-inactive 0.5s;
+  animation: icon-inactive 250ms;
+}
+.icon-inactive:hover {
+  filter: brightness(1);
+  animation: icon-active 250ms;
 }
 .icon-shop {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   filter: brightness(0) invert(1);
 }
 
@@ -24,17 +29,5 @@
   }
   100% {
     filter: brightness(1);
-  }
-}
-
-@keyframes icon-inactive {
-  0% {
-    filter: brightness(1);
-  }
-  50% {
-    filter: brightness(0.5);
-  }
-  100% {
-    filter: brightness(0);
   }
 }

@@ -1,4 +1,4 @@
-@import '../../sass/variables';
+@import '../../../sass/variables';
 .cart-container {
   width: 25vw;
   height: 100vh;
@@ -97,5 +97,27 @@
     font-weight: 700;
     font-size: 18px;
     line-height: 125%;
+  }
+}
+
+.bump {
+  animation: bump 300ms ease-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
   }
 }

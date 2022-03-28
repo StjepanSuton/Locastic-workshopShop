@@ -1,0 +1,172 @@
+@import '../../../sass/variables';
+.backdrop {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 98;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(61, 61, 61, 0.381);
+  overflow-y: scroll;
+}
+.modal-container {
+  z-index: 99;
+  position: absolute;
+  top: 2rem;
+  min-width: 50%;
+  padding: 4rem;
+  box-shadow: 1px 2px 16px rgba(127, 127, 127, 0.25);
+  border-radius: 16px;
+  background-color: white;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  img {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 4rem;
+    right: 4rem;
+  }
+  button {
+    cursor: pointer;
+    width: 30%;
+    height: 60px;
+    margin-top: 2rem;
+    outline: none;
+    border: none;
+    background-color: $color-primary;
+    box-shadow: 1px 2px 8px rgba(127, 127, 127, 0.25);
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 125%;
+  }
+}
+.title {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 125%;
+}
+.instructions {
+  width: 30%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 125%;
+  color: #7f7f7f;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  label {
+    width: 100%;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 125%;
+  }
+  input {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 55px;
+    font-family: 'Livvic', sans-serif;
+    border: none;
+    border-bottom: 2px solid #0097cc;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    color: #0d0d0d;
+  }
+  input:focus {
+    width: 95%;
+    outline: none;
+    background-color: #f2f2f2;
+    padding: 0.5rem 0rem 0.5rem 2rem;
+  }
+
+  input::placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    color: #7f7f7f;
+  }
+  input:focus::placeholder {
+    color: transparent;
+  }
+}
+.modal-container::-webkit-scrollbar {
+  display: none;
+}
+.small-input-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  .date-input {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    label {
+      width: 100%;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 125%;
+    }
+    input {
+      background: url(../../../assets/date.svg) no-repeat scroll 0px 25px;
+      margin-top: 0.5rem;
+      width: 90%;
+      height: 55px;
+      font-family: 'Livvic', sans-serif;
+      border: none;
+      border-bottom: 2px solid #0097cc;
+      padding: 0.5rem 0rem 0.5rem 0rem;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 150%;
+      color: #0d0d0d;
+    }
+    input:focus {
+      width: 79.5%;
+      outline: none;
+      padding-left: 2rem;
+    }
+
+    input::placeholder {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 150%;
+      color: #7f7f7f;
+      padding: 0.5rem 2rem 0.5rem 2rem;
+    }
+    input:focus::placeholder {
+      color: transparent;
+    }
+  }
+}
+.input-checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  input {
+    width: 32px;
+    height: 32px;
+    background: #0097cc;
+    border-radius: 4px;
+  }
+  label {
+    margin-left: 1rem;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 125%;
+    color: #0d0d0d;
+  }
+}

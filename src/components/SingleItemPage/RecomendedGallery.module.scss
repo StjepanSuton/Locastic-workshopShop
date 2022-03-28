@@ -1,0 +1,25 @@
+.recomended-container {
+  background-color: #f2f2f2;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+.placeholder {
+  width: 20%;
+}
+.recomended-pages-container {
+  width: 75%;
+  padding: 1rem;
+  h2 {
+    margin: 1rem 0rem 1rem 0rem;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 125%;
+  }
+}
+.gallery-container {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}

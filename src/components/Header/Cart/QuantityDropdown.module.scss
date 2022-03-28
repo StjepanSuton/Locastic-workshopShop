@@ -1,0 +1,61 @@
+.select-container {
+  position: relative;
+
+  .arrow-down {
+    padding: 0;
+    margin-left: 0.5rem;
+    width: 10px;
+    height: 10px;
+  }
+  .select {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 6;
+    position: relative;
+    width: 50px;
+    height: 40px;
+    border: 1px solid #0097cc;
+    box-sizing: border-box;
+    border-radius: 8px;
+    outline: none;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 125%;
+    padding: 0.5rem;
+    background-color: white;
+  }
+  .options-container {
+    text-align: center;
+    position: absolute;
+    box-sizing: border-box;
+    border-radius: 0px 0px 8px 8px;
+    border: 1px solid rgba(191, 191, 191, 0.224);
+    z-index: 1;
+    width: 50px;
+    max-height: 80px;
+    bottom: -80px;
+    left: 0px;
+    overflow-y: scroll;
+    background-color: white;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    .option {
+      width: 100%;
+      border-bottom: 1px solid rgba(191, 191, 191, 0.272);
+    }
+    .option:hover {
+      background-color: #0097cc;
+    }
+    label {
+      width: 100%;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 125%;
+    }
+  }
+  .options-container::-webkit-scrollbar {
+    display: none;
+  }
+}
