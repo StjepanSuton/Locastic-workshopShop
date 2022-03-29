@@ -1,17 +1,7 @@
 import { useEffect, useState } from 'react'
 import GalleryItem from '../Reusables/GalleryItem'
+import { WorkshopData } from '../Reusables/reusableInterfaces'
 import classes from './RecomendedGallery.module.scss'
-
-interface WorkshopData {
-  category: string
-  date: string
-  desc: string
-  id: number
-  imageUrl: string
-  price: number
-  title: string
-  userId: number
-}
 
 function RecomendedGallery({ category, id }: { category: string; id: number }) {
   const [loading, setLoading] = useState(true)
@@ -47,11 +37,15 @@ function RecomendedGallery({ category, id }: { category: string; id: number }) {
       <div className={classes.placeholder}></div>
       <div className={classes['recomended-pages-container']}>
         <h2>Simiral Workshops</h2>
-        <div className={classes['gallery-container']}>
-          {workshops?.map((workshop) => (
-            <GalleryItem key={workshop.id} workshop={workshop} />
-          ))}
-        </div>
+        {workshops && workshops?.length > 0 ? (
+          <div className={classes['gallery-container']}>
+            {workshops?.map((workshop) => (
+              <GalleryItem key={workshop.id} workshop={workshop} />
+            ))}
+          </div>
+        ) : (
+          <h2>No similar workshops</h2>
+        )}
       </div>
     </div>
   )

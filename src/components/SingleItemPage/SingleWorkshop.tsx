@@ -2,52 +2,39 @@ import Icon from '../Reusables/Icon'
 import dateIcon from '../../assets/date.svg'
 import clockIcon from '../../assets/clock.svg'
 import classes from './SingleWorkshop.module.scss'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { cartActions } from '../../store/cartStore'
 import BuyTicketForm from './BuyTicketForm'
+import useWindowDimensions from '../../hooks/useWindowDimension'
+import { formatToLocalDay, formatToLocalTime } from '../Reusables/formaters'
+import { WorkshopData } from '../Reusables/reusableInterfaces'
 
-interface WorkshopData {
-  category: string
-  date: string
-  desc: string
-  id: number
-  imageUrl: string
-  price: number
-  title: string
-  userId: number
-}
-interface CartItem {
-  id: number
-  imageUrl: string
-  title: string
-  price: number
-  quantity: number
-  totalPrice: number
-}
 
 function SingleWorkshop({ workshop, userName }: { workshop: WorkshopData; userName: string | undefined }) {
+  const { windowWidth } = useWindowDimensions()
+
   const { category, date, desc, imageUrl, title } = workshop
-  const day =
-    new Date(date).toLocaleString('en-us', { weekday: 'long' }).slice(0, 3) +
-    ' ' +
-    new Date(date).toLocaleDateString('de-DE').replaceAll('/', '.') +
-    '.'
 
   return (
     <div className={classes['workshop-container']}>
-      <img className={classes.banner} src={imageUrl} alt="title" />
+      <div className={classes['banner-container']}>
+        <img className={classes.banner} src={imageUrl} alt="title" />
+        {windowWidth <= 1200 && (
+          <div className={classes['category-icon-container']}>
+            <Icon category={category} classPicker={'icon-shop'} />
+          </div>
+        )}
+      </div>
       <div className={classes['form-description-container']}>
         <div className={classes['workshop-description-container']}>
           <div className={classes['time-info']}>
-            <div className={classes['category-icon-container']}>
-              <Icon category={category} classPicker={'icon-shop'} />
-            </div>
+            {windowWidth > 1200 && (
+              <div className={classes['category-icon-container']}>
+                <Icon category={category} classPicker={'icon-shop'} />
+              </div>
+            )}
             <img className={classes['time-icon']} loading="lazy" src={dateIcon} alt="date" />
-            <h6>{day}</h6>
+            <h6>{formatToLocalDay(date)}</h6>
             <img className={classes['time-icon']} loading="lazy" src={clockIcon} alt="date" />
-            <h6>{new Date(date).toLocaleTimeString('de-DE').slice(0, 5).replaceAll('/', ':')}h</h6>
+            <h6>{formatToLocalTime(date)}h</h6>
           </div>
           <h1>{title}</h1>
           {userName && (

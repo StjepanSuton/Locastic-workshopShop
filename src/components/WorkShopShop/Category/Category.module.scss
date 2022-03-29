@@ -1,9 +1,61 @@
+@import '../../../sass/brakepoints';
 .category-container {
+  position: relative;
   width: 15%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   padding: 2rem;
+  @include media('<=tablet') {
+    width: 100%;
+    padding: 0;
+  }
+  .arrow-category {
+    padding-left: 1rem;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    img {
+      position: absolute;
+      z-index: 4;
+      padding-left: 10px;
+      width: 15px;
+      top: 25px;
+      background-color: white;
+    }
+    h5 {
+      padding: 1rem;
+      padding-left: 2rem;
+      width: 100%;
+      height: 100%;
+      font-size: 18px;
+      color: #0097cc;
+      z-index: 3;
+      position: relative;
+      background-color: white;
+    }
+  }
+  .category-dropdown-container {
+    z-index: 2;
+    padding-left: 1rem;
+    bottom: -140px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    background-color: white;
+    h6 {
+      cursor: pointer;
+      padding: 0.2rem;
+      font-size: 18px;
+      color: #0097cc;
+    }
+  }
   .title {
     margin: 1rem;
     color: #7f7f7f;

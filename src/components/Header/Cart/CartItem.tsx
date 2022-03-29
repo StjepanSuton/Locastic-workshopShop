@@ -4,14 +4,8 @@ import classes from './CartItem.module.scss'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../../store/cartStore'
 import QuantityDropdown from './QuantityDropdown'
-interface Item {
-  id: number
-  imageUrl: string
-  price: number
-  title: string
-  quantity: number
-  totalPrice: number
-}
+import { formatToLocalCurrency } from '../../Reusables/formaters'
+import { Item } from '../../Reusables/reusableInterfaces'
 
 function CartItem({ item }: { item: Item }) {
   const { id, imageUrl, title, totalPrice } = item
@@ -38,7 +32,7 @@ function CartItem({ item }: { item: Item }) {
         <div className={classes['quantitiy-container']}>
           <QuantityDropdown item={item} />
           <h3>
-            {totalPrice.toFixed(2).replace('.', ',')}
+            {formatToLocalCurrency(totalPrice)}
             <span>EUR</span>
           </h3>
         </div>

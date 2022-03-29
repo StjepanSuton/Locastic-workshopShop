@@ -8,7 +8,11 @@ import CheckoutMoadl from './Checkout/CheckoutMoadl'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { useNavigate } from 'react-router'
+import useWindowDimensions from '../../hooks/useWindowDimension'
+
 function Header() {
+  const { windowWidth } = useWindowDimensions()
+
   const totalQuantity = useSelector((state: RootState) => state.cart.totalQuantity)
   const [showCart, setShowCart] = useState(false)
   const [checkoutModal, setCheckoutModal] = useState(false)
@@ -16,6 +20,7 @@ function Header() {
   //For add to cart button notification
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false)
   const cartClasses = `${classes['cart-info-container']} ${btnIsHighlighted ? classes.bump : ''}`
+
   useEffect(() => {
     if (totalQuantity === 0) {
       return
@@ -29,22 +34,36 @@ function Header() {
     }
   }, [totalQuantity])
 
-  return (
-    <div>
-      <div className={classes['header-container']}>
-        <img onClick={() => navigate('/workshop')} src={logo} alt="tinel-logo" />
-        <div onClick={() => setShowCart(true)} className={cartClasses}>
+  const dektopWindowCart = () => {
+    return (
+      <div onClick={() => setShowCart(true)} className={cartClasses}>
+        <div className={classes['cart-icon']}>
           <img src={cart} alt="cart" />
-          {totalQuantity === 0 && <h6>Cart is empty</h6>}
-          {totalQuantity !== 0 && (
-            <h6>{`${totalQuantity} ${totalQuantity === 1 ? 'Workshop' : 'Workshops'} in Cart`}</h6>
-          )}
+          {totalQuantity !== 0 && <span className={classes.notification}></span>}
         </div>
-        <AnimatePresence>
-          {showCart && <CartContainer setShowCart={setShowCart} setCheckoutModal={setCheckoutModal} />}
-        </AnimatePresence>
-        <AnimatePresence>{checkoutModal && <CheckoutMoadl setCheckoutModal={setCheckoutModal} />}</AnimatePresence>
+        {totalQuantity === 0 && <h6>Cart is empty</h6>}
+        {totalQuantity !== 0 && <h6>{`${totalQuantity} ${totalQuantity === 1 ? 'Workshop' : 'Workshops'} in Cart`}</h6>}
       </div>
+    )
+  }
+
+  const mobileWindowCart = () => {
+    return (
+      <div onClick={() => setShowCart(true)} className={cartClasses}>
+        <img src={cart} alt="cart" />
+        {totalQuantity !== 0 && <span className={classes.notification}></span>}
+      </div>
+    )
+  }
+
+  return (
+    <div className={classes['header-container']}>
+      <img onClick={() => navigate('/workshop')} src={logo} alt="tinel-logo" />
+      {windowWidth > 1200 ? dektopWindowCart() : mobileWindowCart()}
+      <AnimatePresence>
+        {showCart && <CartContainer setShowCart={setShowCart} setCheckoutModal={setCheckoutModal} />}
+      </AnimatePresence>
+      <AnimatePresence>{checkoutModal && <CheckoutMoadl setCheckoutModal={setCheckoutModal} />}</AnimatePresence>
     </div>
   )
 }

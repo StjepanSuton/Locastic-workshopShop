@@ -1,11 +1,21 @@
+@import '../../sass/brakepoints';
 .recomended-container {
   background-color: #f2f2f2;
   width: 100vw;
   display: flex;
   flex-direction: row;
+  @include media('<=tablet') {
+    flex-direction: column;
+    align-items: center;
+    width: unset;
+    margin-bottom: 3rem;
+  }
 }
 .placeholder {
   width: 20%;
+  @include media('<=tablet') {
+    width: 0;
+  }
 }
 .recomended-pages-container {
   width: 75%;
@@ -15,6 +25,9 @@
     font-weight: 700;
     font-size: 40px;
     line-height: 125%;
+    @include media('<=tablet') {
+      font-size: 32px;
+    }
   }
 }
 .gallery-container {
@@ -22,4 +35,12 @@
   grid-template-columns: 2fr 2fr 2fr;
   gap: 2rem;
   margin-bottom: 3rem;
+  @include media('<=tablet') {
+    grid-template-columns: 2fr 2fr;
+  }
+  @include media('<=phone') {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

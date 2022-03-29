@@ -1,4 +1,5 @@
 @import '../../sass/variables';
+@import '../../sass/brakepoints';
 .purchase-container {
   align-self: flex-start;
   margin: 1rem;
@@ -6,6 +7,22 @@
   width: 40%;
   box-shadow: 1px 2px 16px rgba(127, 127, 127, 0.25);
   border-radius: 8px;
+  @include media('<=tablet') {
+    margin: 0;
+    padding: 1rem;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+    z-index: 99;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: -1px -2px 4px rgba(127, 127, 127, 0.25);
+  }
   h5 {
     margin: 0;
     margin-bottom: 1rem;
@@ -19,12 +36,26 @@
     font-weight: 700;
     font-size: 40px;
     line-height: 125%;
+    @include media('<=tablet') {
+      margin-bottom: 0;
+      font-size: 20px;
+      padding-left: 1rem;
+    }
+    @include media('<=phone') {
+      padding-left: 0;
+    }
   }
   .form-container {
     margin-top: 1.5rem;
     width: 100%;
     display: flex;
     flex-direction: row;
+    @include media('<=tablet') {
+      margin-top: 0;
+      width: 70%;
+      align-items: center;
+      justify-content: space-around;
+    }
     .select-container {
       position: relative;
       .arrow-down {
@@ -50,6 +81,10 @@
         outline: none;
         font-weight: 700;
         background-color: white;
+        @include media('<=tablet') {
+          width: 70px;
+          height: 50px;
+        }
       }
       .tickets {
         margin: 0;
@@ -59,6 +94,9 @@
         line-height: 125%;
         background-color: white;
         color: black;
+        @include media('<=tablet') {
+          font-size: 18px;
+        }
       }
       .options-container {
         text-align: center;
@@ -75,6 +113,11 @@
         background-color: white;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
+        @include media('<=tablet') {
+          bottom: unset;
+          top: -120px;
+          border-radius: 8px 8px 0px 0px;
+        }
         .option {
           width: 100%;
           border-bottom: 1px solid rgba(191, 191, 191, 0.272);
@@ -112,6 +155,19 @@
       font-weight: 700;
       font-size: 18px;
       line-height: 125%;
+      @include media('<=tablet') {
+        margin-left: 0;
+        padding: 1rem 2rem 1rem 2rem;
+        height: unset;
+        width: unset;
+      }
+      span {
+        font-size: 14px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
   h6 {

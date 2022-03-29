@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 import CartItem from './CartItem'
 import { useEffect, useState } from 'react'
+import { formatToLocalCurrency } from '../../Reusables/formaters'
 
 function CartContainer({
   setShowCart,
@@ -18,9 +19,11 @@ function CartContainer({
   const cartItems = useSelector((state: RootState) => state.cart.items)
   const cartItemsQuantity = useSelector((state: RootState) => state.cart.totalQuantity)
   const cartItemsPrice = useSelector((state: RootState) => state.cart.totalCartPrice)
+
   //For cart changeing state animation
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false)
   const cartClasses = `${classes['cart-counter']} ${btnIsHighlighted ? classes.bump : ''}`
+
   useEffect(() => {
     if (cartItemsQuantity === 0) {
       return
@@ -44,8 +47,8 @@ function CartContainer({
     >
       <div className={classes['title-container']}>
         <div className={cartClasses}>
-          <img src={cartIcon} alt="cartIcoc" />
-          <h5>{`${cartItemsQuantity} ${cartItemsQuantity > 1 ? 'Worskops' : 'Workshop'}`}</h5>
+          <img src={cartIcon} alt="cartIcon" />
+          <h5>{`${cartItemsQuantity} ${cartItemsQuantity === 1 ? 'Worskop' : 'Workshops'}`}</h5>
         </div>
         <motion.img
           onClick={() => setShowCart(false)}
@@ -58,7 +61,7 @@ function CartContainer({
       <AnimatePresence>
         <motion.div layout key={'cart'}>
           {cartItems.map((item) => (
-            <motion.div style={{ width: '100%' }} layout key={item.id}>
+            <motion.div className={classes['layout-container']} layout key={item.id}>
               <CartItem item={item} />
             </motion.div>
           ))}
@@ -66,7 +69,7 @@ function CartContainer({
           <motion.div layoutId="cart-info" className={classes['cart-infor-container']}>
             <h5>SUBTOTAL</h5>
             <h2>
-              {cartItemsPrice.toFixed(2).replace('.', ',')}
+              {formatToLocalCurrency(cartItemsPrice)}
               <span>EUR</span>
             </h2>
             {cartItems.length > 0 ? (

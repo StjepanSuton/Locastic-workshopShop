@@ -6,24 +6,7 @@ import { motion } from 'framer-motion'
 import SingleWorkshop from './SingleWorkshop'
 import RecomendedGallery from './RecomendedGallery'
 import LoadingSpiner from '../Reusables/LoadingSpiner'
-
-interface WorkshopData {
-  category: string
-  date: string
-  desc: string
-  id: number
-  imageUrl: string
-  price: number
-  title: string
-  userId: number
-}
-
-interface UserData {
-  email: string
-  id: number
-  name: string
-  password: string
-}
+import { UserData, WorkshopData } from '../Reusables/reusableInterfaces'
 
 function SingleItemPage() {
   const [workshop, setWorkshop] = useState<WorkshopData | null>(null)
@@ -52,6 +35,7 @@ function SingleItemPage() {
     }
     getWorkshopData()
   }, [])
+
   useEffect(() => {
     if (workshop) {
       const getUserData = async () => {
@@ -79,11 +63,13 @@ function SingleItemPage() {
       )}
       {!loading && error && <h2 className={classes.error}>{error}</h2>}
       {!loading && !error && (
-        <div>
+        <div className={classes['all-container']}>
           <div className={classes['page-container']}>
             <div onClick={() => navigate('/workshop')} className={classes['side-page-container']}>
-              <motion.img src={backIcon} alt="back" />
-              <h6>Back</h6>
+              <div className={classes['arrow-back']}>
+                <motion.img src={backIcon} alt="back" />
+                <h6>Back</h6>
+              </div>
             </div>
             {workshop && <SingleWorkshop userName={user?.name} workshop={workshop} />}
           </div>

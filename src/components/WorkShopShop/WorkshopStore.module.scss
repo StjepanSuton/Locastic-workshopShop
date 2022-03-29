@@ -1,6 +1,12 @@
+@import '../../sass/brakepoints';
+
 .workshop-container {
   margin-top: 90px;
-  width: 100%;
   display: flex;
   flex-direction: row;
+  @include media('<=tablet') {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
 }

@@ -1,9 +1,9 @@
 @import '../../sass/variables';
+@import '../../sass/brakepoints';
 .header-container {
   z-index: 99;
   width: 100vw;
   height: 90px;
-  position: -webkit-sticky;
   position: fixed;
   top: 0;
   display: flex;
@@ -15,24 +15,53 @@
     cursor: pointer;
     padding: 1rem;
     width: 105px;
+    @include media('<=phone') {
+      width: 90px;
+    }
   }
 }
 .cart-info-container {
+  position: relative;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  margin-right: 6rem;
-  img {
-    width: 20px;
+  padding-right: 6rem;
+  @include media('<=tablet') {
+    padding-right: 3rem;
   }
   h6 {
     margin: 0;
     font-weight: 700;
     font-size: 12px;
   }
+  img {
+    padding: 0;
+    width: 20px;
+    @include media('<=tablet') {
+      width: 25px;
+    }
+  }
+}
+.notification {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: $color-secondary;
+  top: -5px;
+  right: 5px;
+  @include media('<=tablet') {
+    right: unset;
+    top: 15px;
+    left: 35px;
+  }
+}
+.cart-icon {
+  position: relative;
+  padding-right: 10px;
 }
 .bump {
   animation: bump 300ms ease-out;

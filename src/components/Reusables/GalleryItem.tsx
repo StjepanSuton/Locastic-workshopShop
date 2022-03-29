@@ -1,4 +1,5 @@
 import Icon from './Icon'
+import cartIcon from '../../assets/cart.svg'
 import dateIcon from '../../assets/date.svg'
 import clockIcon from '../../assets/clock.svg'
 import classes from './GalleryItem.module.scss'
@@ -6,18 +7,14 @@ import { motion } from 'framer-motion'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../store/cartStore'
 import { useNavigate } from 'react-router'
-interface WorkshopData {
-  category: string
-  date: string
-  desc: string
-  id: number
-  imageUrl: string
-  price: number
-  title: string
-  userId: number
-}
+import useWindowDimensions from '../../hooks/useWindowDimension'
+import { formatToLocalCurrency, formatToLocalDate, formatToLocalTime } from './formaters'
+import { WorkshopData } from './reusableInterfaces'
+
 
 function GalleryItem({ workshop }: { workshop: WorkshopData }) {
+  const { windowWidth } = useWindowDimensions()
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -52,20 +49,22 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
           <div>
             <img loading="lazy" src={dateIcon} alt="date" />
           </div>
-          <h6>{new Date(date).toLocaleDateString('de-DE').replaceAll('/', '.') + '.'}</h6>
+          <h6>{formatToLocalDate(date)}</h6>
           <div>
             <img loading="lazy" src={clockIcon} alt="date" />
           </div>
-          <h6>{new Date(date).toLocaleTimeString('de-DE').slice(0, 5).replaceAll('/', ':')}</h6>
+          <h6>{formatToLocalTime(date)}</h6>
         </div>
         <h4 onClick={() => navigate(`/workshop/${id}`)}>{title}</h4>
-        <h3>
-          {price.toFixed(2).replace('.', ',')}
-          <span>EUR</span>
-        </h3>
-        <motion.button onClick={addItem} whileTap={{ scale: 1.1 }}>
-          Add to Cart
-        </motion.button>
+        <div className={classes['price-bottun']}>
+          <h3>
+            {formatToLocalCurrency(price)}
+            <span>EUR</span>
+          </h3>
+          <motion.button onClick={addItem} whileTap={{ scale: 1.1 }}>
+            {windowWidth > 650 ? 'Add to Cart' : <img src={cartIcon} alt="cartIcon" />}
+          </motion.button>
+        </div>
       </div>
     </motion.div>
   )

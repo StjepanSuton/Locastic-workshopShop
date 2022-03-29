@@ -5,17 +5,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 import { AnimatePresence, motion } from 'framer-motion'
 import LoadingSpiner from '../../Reusables/LoadingSpiner'
-
-interface WorkshopData {
-  category: string
-  date: string
-  desc: string
-  id: number
-  imageUrl: string
-  price: number
-  title: string
-  userId: number
-}
+import { WorkshopData } from '../../Reusables/reusableInterfaces'
 
 function ShopGallery() {
   //States
@@ -24,6 +14,9 @@ function ShopGallery() {
   const [workshops, setWorkshops] = useState<WorkshopData[] | null>(null)
   const [shownWorkshops, setShownWorkShops] = useState(9)
   const selectedCategory = useSelector((state: RootState) => state.categorys)
+
+  const DEFAULT_CATEGORY = 'all'
+
   //Animation settings
   const container = {
     hidden: { opacity: 0 },
@@ -57,8 +50,11 @@ function ShopGallery() {
               return Date.parse(a.date) - Date.parse(b.date)
             })
             .filter((workshop) => {
-              if (selectedCategory === 'all') return workshop
-              else if (selectedCategory === workshop.category) return workshop
+              if (selectedCategory === DEFAULT_CATEGORY) {
+                return workshop
+              } else if (selectedCategory === workshop.category) {
+                return workshop
+              }
             })
         )
       } catch (err) {

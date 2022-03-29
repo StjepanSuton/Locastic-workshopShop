@@ -4,19 +4,15 @@ import classes from './BuyTicketForm.module.scss'
 import { AnimatePresence, motion } from 'framer-motion'
 import { cartActions } from '../../store/cartStore'
 import arrowDownIcon from '../../assets/arrowdown.svg'
+import cartIcon from '../../assets/cart.svg'
+import useWindowDimensions from '../../hooks/useWindowDimension'
+import { formatSubtotalToLocalCurrency, formatToLocalCurrency } from '../Reusables/formaters'
+import { WorkshopData } from '../Reusables/reusableInterfaces'
 
-interface WorkshopData {
-  category: string
-  date: string
-  desc: string
-  id: number
-  imageUrl: string
-  price: number
-  title: string
-  userId: number
-}
 
 function BuyTicketForm({ workshop }: { workshop: WorkshopData }) {
+  const { windowWidth } = useWindowDimensions()
+
   const [showDropdown, setShowDropdown] = useState(false)
   const { id, imageUrl, price, title } = workshop
 
@@ -39,11 +35,19 @@ function BuyTicketForm({ workshop }: { workshop: WorkshopData }) {
     setTickets(0)
   }
 
+  const quantityOptionsGenerator = () => {
+    return [...Array(99).fill(1)].map((number, i) => (
+      <div key={number + i} onClick={() => setTickets(number + i)} className={classes.option}>
+        <label>{number + i}</label>
+      </div>
+    ))
+  }
+
   return (
     <div className={classes['purchase-container']}>
-      <h5>Buy Your Ticket</h5>
+      {windowWidth > 1200 && <h5>Buy Your Ticket</h5>}
       <h2>
-        {price.toFixed(2).replace('.', ',')}
+        {formatToLocalCurrency(price)}
         <span>EUR</span>
       </h2>
       <form onSubmit={addItem} className={classes['form-container']}>
@@ -56,25 +60,27 @@ function BuyTicketForm({ workshop }: { workshop: WorkshopData }) {
             {showDropdown && (
               <motion.div
                 animate={{ y: 0, opacity: 1 }}
-                initial={{ y: -40, opacity: 0 }}
-                exit={{ y: -40, opacity: 0 }}
+                initial={{ y: windowWidth > 1200 ? -40 : 40, opacity: 0 }}
+                exit={{ y: windowWidth > 1200 ? -40 : 40, opacity: 0 }}
                 transition={{ duration: 0.5 }}
                 className={classes['options-container']}
               >
-                {[...Array(99).fill(1)].map((number, i) => (
-                  <div key={number + i} onClick={() => setTickets(number + i)} className={classes.option}>
-                    <label>{number + i}</label>
-                  </div>
-                ))}
+                {quantityOptionsGenerator()}
               </motion.div>
             )}
           </AnimatePresence>
         </div>
         <motion.button whileTap={{ scale: 1.1 }} type="submit">
-          Add to Cart
+          {windowWidth > 1200 ? (
+            'Add to Cart'
+          ) : (
+            <span>
+              Add To <img src={cartIcon} alt="cartIcon" />
+            </span>
+          )}
         </motion.button>
       </form>
-      <h6>Subtotal: {(tickets * price).toLocaleString('de-DE', { minimumFractionDigits: 2 })}EUR</h6>
+      {windowWidth > 1200 && <h6>Subtotal: {formatSubtotalToLocalCurrency(price * tickets)}EUR</h6>}
     </div>
   )
 }

@@ -1,16 +1,29 @@
 @import '../../sass/variables';
+@import '../../sass/brakepoints';
 .gallery-item-container {
   border: 1px solid #0000001a;
   background-color: white;
   box-sizing: border-box;
   border-radius: 8px;
-  width: 320px;
+  width: 100%;
   height: 450px;
+  @include media('<=phone') {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 335px;
+    height: 150px;
+  }
 }
 .image-container {
   position: relative;
   width: 100%;
   height: 180px;
+  @include media('<=phone') {
+    min-width: 105px;
+    max-width: 105px;
+    height: 150px;
+  }
   .banner {
     cursor: pointer;
     border-top-left-radius: 8px;
@@ -18,6 +31,10 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+    @include media('<=phone') {
+      border-radius: 8px 0px 0px 8px;
+      object-fit: cover;
+    }
   }
   .icon-container {
     position: absolute;
@@ -31,6 +48,13 @@
     color: white;
     right: 15px;
     bottom: -15px;
+    @include media('<=phone') {
+      width: 32px;
+      height: 32px;
+      bottom: unset;
+      top: 15px;
+      right: -15px;
+    }
   }
 }
 .info-container {
@@ -39,6 +63,9 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  @include media('<=phone') {
+    padding: 0.5rem 1.5rem 0rem 1.5rem;
+  }
   .time-info {
     display: flex;
     flex-direction: row;
@@ -46,6 +73,9 @@
     img {
       margin-right: 5px;
       width: 15px;
+      @include media('<=phone') {
+      }
+      width: 13px;
     }
     h6 {
       margin-right: 10px;
@@ -53,6 +83,9 @@
       font-weight: 700;
       font-size: 15px;
       line-height: 125%;
+      @include media('<=phone') {
+        font-size: 13px;
+      }
     }
   }
   h4 {
@@ -68,32 +101,66 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    @include media('<=phone') {
+      font-size: 18px;
+    }
   }
-  h3 {
-    margin: 0;
-    margin-top: 1rem;
-    font-weight: 700;
-    font-size: 29px;
-    line-height: 125%;
-  }
-  span {
-    margin-left: 0.5rem;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 125%;
-  }
-  button {
-    cursor: pointer;
+  .price-bottun {
     width: 100%;
-    height: 50px;
     margin-top: 1rem;
-    outline: none;
-    border: none;
-    background-color: $color-primary;
-    box-shadow: 1px 2px 8px rgba(127, 127, 127, 0.25);
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 125%;
+    @include media('<=phone') {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 29px;
+      line-height: 125%;
+      @include media('<=phone') {
+        font-size: 20px;
+      }
+    }
+    span {
+      margin-left: 0.5rem;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 125%;
+      @include media('<=phone') {
+        margin-left: 0;
+        font-size: 13px;
+      }
+    }
+    button {
+      cursor: pointer;
+      width: 100%;
+      height: 50px;
+      margin-top: 1rem;
+      outline: none;
+      border: none;
+      background-color: $color-primary;
+      box-shadow: 1px 2px 8px rgba(127, 127, 127, 0.25);
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 125%;
+      @include media('<=phone') {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        width: unset;
+        height: unset;
+        padding: 0.5rem;
+      }
+      img {
+        padding: 0;
+        width: 25px;
+      }
+    }
   }
 }
