@@ -1,4 +1,5 @@
 @import '../../../sass/variables';
+@import '../../../sass/brakepoints';
 .backdrop {
   position: fixed;
   display: flex;
@@ -11,8 +12,12 @@
   height: 100%;
   background-color: rgba(61, 61, 61, 0.381);
   overflow-y: scroll;
+  overflow-x: hidden;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  @include media('<=phone') {
+    background-color: transparent;
+  }
 }
 .backdrop::-webkit-scrollbar {
   display: none;
@@ -20,6 +25,7 @@
 
 .modal {
   position: absolute;
+  overflow-x: hidden;
   top: 2rem;
   width: 100%;
   display: flex;
@@ -43,12 +49,27 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   margin-bottom: 4rem;
+  @include media('<=small-tablet') {
+    width: 80%;
+    padding: 3rem;
+    margin-bottom: 0;
+  }
+  @include media('<=phone') {
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+
+    margin-bottom: 0;
+  }
   img {
     position: absolute;
     width: 15px;
     height: 15px;
     top: 4rem;
     right: 4rem;
+    @include media('<=small-tablet') {
+      top: 3rem;
+      right: 3rem;
+    }
   }
   button {
     cursor: pointer;
@@ -63,12 +84,18 @@
     font-weight: 700;
     font-size: 18px;
     line-height: 125%;
+    @include media('<=phone') {
+      width: 100%;
+    }
   }
 }
 .title {
   font-weight: 700;
   font-size: 40px;
   line-height: 125%;
+  @include media('<=phone') {
+    font-size: 32px;
+  }
 }
 .instructions {
   width: 30%;
@@ -78,6 +105,10 @@
   font-size: 15px;
   line-height: 125%;
   color: #7f7f7f;
+  @include media('<=phone') {
+    width: 55%;
+    font-size: 13px;
+  }
 }
 
 .modal-container::-webkit-scrollbar {
@@ -93,12 +124,23 @@
     position: absolute;
     top: 0;
     right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
+
   label {
     width: 100%;
     font-weight: 700;
     font-size: 15px;
     line-height: 125%;
+    @include media('<=phone') {
+      font-size: 13px;
+    }
   }
   input {
     margin-top: 0.5rem;
@@ -128,6 +170,9 @@
     font-size: 18px;
     line-height: 150%;
     color: #7f7f7f;
+    @include media('<=phone') {
+      font-size: 13px;
+    }
   }
 }
 
@@ -140,12 +185,22 @@
     position: absolute;
     top: 0;
     right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
   label {
     width: 100%;
     font-weight: 700;
     font-size: 15px;
     line-height: 125%;
+    @include media('<=phone') {
+      font-size: 13px;
+    }
   }
   input {
     margin-top: 0.5rem;
@@ -153,7 +208,7 @@
     max-height: 55px;
     font-family: 'Livvic', sans-serif;
     border: none;
-    border-bottom: 2px solid #cc0000;
+    border-bottom: 2px solid #ff392e;
     padding: 0;
     font-weight: 500;
     font-size: 18px;
@@ -174,6 +229,9 @@
     font-size: 18px;
     line-height: 150%;
     color: #7f7f7f;
+    @include media('<=phone') {
+      font-size: 13px;
+    }
   }
 }
 
@@ -184,17 +242,31 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 1rem;
+  @include media('<=phone') {
+    display: flex;
+    flex-direction: column;
+  }
   .date-input {
     position: relative;
     width: 90%;
     max-height: 70px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
+    @include media('<=phone') {
+      width: 100%;
+    }
     .small-error {
       position: absolute;
       top: 0;
       right: 25px;
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      @include media('<=phone') {
+        right: 0px;
+      }
     }
     label {
       width: 100%;
@@ -214,6 +286,9 @@
       font-size: 18px;
       line-height: 150%;
       color: #0d0d0d;
+      @include media('<=phone') {
+        width: 100%;
+      }
     }
     input:focus {
       outline: none;
@@ -238,10 +313,21 @@
   max-height: 70px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
+  @include media('<=phone') {
+    width: 100%;
+  }
   .small-error {
     position: absolute;
     top: 0;
     right: 25px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    @include media('<=phone') {
+      right: 0px;
+    }
   }
   label {
     width: 100%;
@@ -255,12 +341,15 @@
     height: 55px;
     font-family: 'Livvic', sans-serif;
     border: none;
-    border-bottom: 2px solid #cc0000;
+    border-bottom: 2px solid #ff392e;
     padding: 0;
     font-weight: 500;
     font-size: 18px;
     line-height: 300%;
     color: #0d0d0d;
+    @include media('<=phone') {
+      width: 100%;
+    }
   }
   input:focus {
     outline: none;
@@ -289,6 +378,10 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   border: none;
+  margin-bottom: 1rem;
+  @include media('<=phone') {
+    width: 100%;
+  }
   label {
     width: 100%;
     font-weight: 700;
@@ -349,6 +442,10 @@ input[type='number'] {
   line-height: 125%;
   color: #ff392e;
   margin-right: 2rem;
+  @include media('<=phone') {
+    right: -1rem;
+    bottom: 8rem;
+  }
 }
 // background-color: #f2f2f2;
 //padding: 0.5rem 0rem 0.5rem 2rem;

@@ -5,7 +5,7 @@ import useWindowDimensions from '../../../hooks/useWindowDimension'
 import { RootState } from '../../../store'
 import { selectCategory } from '../../../store/categoryStore'
 import Icon from '../../Reusables/Icon'
-import downIcon from '../../../assets/arrowdown.svg'
+import downIcon from '../../../assets/bluearrowdown.svg'
 import classes from './Category.module.scss'
 import { formatFirstLetterToUpperCase } from '../../Reusables/formaters'
 function Category() {
@@ -82,6 +82,7 @@ function Category() {
             >
               {categories?.map((category) => (
                 <h6
+                  key={category}
                   onClick={() => {
                     dispatch(selectCategory(category))
                     setShowCategoryDropdown(false)

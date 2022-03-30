@@ -195,6 +195,52 @@
       "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg"
     }
   ],
-  "orders": [],
-  "categories": ["marketing", "backend", "frontend", "design"]
+  "orders": [
+    {
+      "a": 1,
+      "b": "Textual content",
+      "id": 1
+    },
+    {
+      "cartItems": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "id": 2
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 3
+    }
+  ],
+  "categories": [
+    "marketing",
+    "backend",
+    "frontend",
+    "design"
+  ]
 }

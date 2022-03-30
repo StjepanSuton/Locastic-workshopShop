@@ -4,7 +4,7 @@ import cart from '../../assets/cart.svg'
 import { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import CartContainer from './Cart/CartContainer'
-import CheckoutMoadl from './Checkout/CheckoutMoadl'
+import CheckoutModal from './Checkout/CheckoutModal'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { useNavigate } from 'react-router'
@@ -51,7 +51,7 @@ function Header() {
     return (
       <div onClick={() => setShowCart(true)} className={cartClasses}>
         <img src={cart} alt="cart" />
-        {totalQuantity !== 0 && <span className={classes.notification}></span>}
+        {totalQuantity !== 0 && <span className={classes.notification}>{totalQuantity}</span>}
       </div>
     )
   }
@@ -63,7 +63,9 @@ function Header() {
       <AnimatePresence>
         {showCart && <CartContainer setShowCart={setShowCart} setCheckoutModal={setCheckoutModal} />}
       </AnimatePresence>
-      <AnimatePresence>{checkoutModal && <CheckoutMoadl setCheckoutModal={setCheckoutModal} />}</AnimatePresence>
+      <AnimatePresence>
+        {checkoutModal && <CheckoutModal setCheckoutModal={setCheckoutModal} />}
+      </AnimatePresence>
     </div>
   )
 }

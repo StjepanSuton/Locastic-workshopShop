@@ -39,9 +39,26 @@
   padding: 1rem;
   width: 80%;
   .cart-counter {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
+    .notification {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $color-secondary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      top: 0px;
+      left: 20px;
+      @include media('<=tablet') {
+        display: none;
+      }
+    }
     img {
       padding: 0;
       width: 25px;

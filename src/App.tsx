@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router'
+import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 import SingleItemPage from './components/SingleItemPage/SingleItemPage'
 import Workshop from './components/WorkShopShop/WorkshopStore'
@@ -12,6 +13,7 @@ function App() {
         <Route path={'/workshop'} element={<Workshop />} />
         <Route path={'/workshop/:id'} element={<SingleItemPage />} />
       </Routes>
+      <Footer />
     </>
   )
 }

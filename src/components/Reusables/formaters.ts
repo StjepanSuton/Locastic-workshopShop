@@ -23,6 +23,6 @@ export const formatToLocalTime = (date: string) => {
   return new Date(date).toLocaleTimeString('de-DE').slice(0, 5).replaceAll('/', ':')
 }
 
-export const formatFirstLetterToUpperCase = (name: string) => {
+export const formatFirstLetterToUpperCase = (name: any) => {
   return name.toUpperCase().slice(0, 1) + name.toLowerCase().slice(1, name.length)
 }

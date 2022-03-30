@@ -41,14 +41,15 @@ function CartContainer({
     <motion.div
       className={classes['cart-container']}
       animate={{ x: 0 }}
-      initial={{ x: 500 }}
-      exit={{ x: 500 }}
+      initial={{ x: 700 }}
+      exit={{ x: 700 }}
       transition={{ duration: 0.7 }}
     >
       <div className={classes['title-container']}>
         <div className={cartClasses}>
           <img src={cartIcon} alt="cartIcon" />
           <h5>{`${cartItemsQuantity} ${cartItemsQuantity === 1 ? 'Worskop' : 'Workshops'}`}</h5>
+          {cartItemsQuantity !== 0 && <span className={classes.notification}></span>}
         </div>
         <motion.img
           onClick={() => setShowCart(false)}
@@ -73,7 +74,14 @@ function CartContainer({
               <span>EUR</span>
             </h2>
             {cartItems.length > 0 ? (
-              <motion.button onClick={() => setCheckoutModal(true)}>Checkout</motion.button>
+              <motion.button
+                onClick={() => {
+                  setCheckoutModal(true)
+                  setShowCart(false)
+                }}
+              >
+                Checkout
+              </motion.button>
             ) : (
               <h5>Your cart is empty</h5>
             )}

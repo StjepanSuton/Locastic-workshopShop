@@ -1,6 +1,12 @@
+@import '../../sass/brakepoints';
 .error {
   font-weight: 600;
   font-size: 15px;
   line-height: 125%;
   color: #ff392e;
+  @include media('<=phone') {
+    text-align: end;
+    width: 80%;
+    font-size: 13px;
+  }
 }

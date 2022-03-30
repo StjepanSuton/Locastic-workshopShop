@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 const storage = localStorage.getItem('locastic-workShop-category')
-const initialState: string = storage === null ? 'all' : JSON.parse(storage)
+
+const DEFAULT_CATEGORY = 'all'
+
+const initialState: string = storage === null ? DEFAULT_CATEGORY : JSON.parse(storage)
 
 export const categorySlice = createSlice({
   name: 'category',
