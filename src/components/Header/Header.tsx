@@ -63,9 +63,7 @@ function Header() {
       <AnimatePresence>
         {showCart && <CartContainer setShowCart={setShowCart} setCheckoutModal={setCheckoutModal} />}
       </AnimatePresence>
-      <AnimatePresence>
-        {checkoutModal && <CheckoutModal setCheckoutModal={setCheckoutModal} />}
-      </AnimatePresence>
+      <AnimatePresence>{checkoutModal && <CheckoutModal setCheckoutModal={setCheckoutModal} />}</AnimatePresence>
     </div>
   )
 }

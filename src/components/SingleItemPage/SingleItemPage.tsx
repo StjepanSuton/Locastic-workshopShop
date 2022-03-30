@@ -7,6 +7,8 @@ import SingleWorkshop from './SingleWorkshop'
 import RecomendedGallery from './RecomendedGallery'
 import LoadingSpiner from '../Reusables/LoadingSpiner'
 import { UserData, WorkshopData } from '../Reusables/reusableInterfaces'
+import { useDispatch } from 'react-redux'
+import { uiActions } from '../../store/uiStore'
 
 function SingleItemPage() {
   const [workshop, setWorkshop] = useState<WorkshopData | null>(null)
@@ -16,6 +18,8 @@ function SingleItemPage() {
 
   const navigate = useNavigate()
   const { id } = useParams()
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const getWorkshopData = async () => {
@@ -65,8 +69,14 @@ function SingleItemPage() {
       {!loading && !error && (
         <div className={classes['all-container']}>
           <div className={classes['page-container']}>
-            <div onClick={() => navigate('/workshop')} className={classes['side-page-container']}>
-              <div className={classes['arrow-back']}>
+            <div className={classes['side-page-container']}>
+              <div
+                onClick={() => {
+                  navigate('/workshop')
+                  id && dispatch(uiActions.setScrollTarget(id))
+                }}
+                className={classes['arrow-back']}
+              >
                 <motion.img src={backIcon} alt="back" />
                 <h6>Back</h6>
               </div>

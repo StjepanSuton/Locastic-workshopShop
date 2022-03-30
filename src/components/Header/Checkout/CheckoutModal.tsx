@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import classes from './CheckoutModal.module.scss'
 import closeIcon from '../../../assets/close.svg'
-import useInput from '../../../hooks/use-input'
 import { AnimatePresence, motion } from 'framer-motion'
 import ErrorMessage from '../../Reusables/ErrorMessage'
 import ThankYouModal from './ThankYouModal'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
+import useInput from '../../../hooks/use-input'
+import { cartActions } from '../../../store/cartStore'
+import LoadingSpiner from '../../Reusables/LoadingSpiner'
 
-//Checker Functions
 const isNameValid = (value: string) => {
-  if (value.trim() !== '' && /^[a-zA-Z]+$/.test(value)) {
+  // in [a-z] č,ć... are not allowed, - is allowed here
+  if (value.trim() !== '' && /^([^0-9^`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐฿]*)$/.test(value)) {
     return true
   } else {
     return false
   }
 }
-const isEmailValid = (value: string) => value.includes('@')
+const isEmailValid = (value: string) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/i.test(value)
 const isAdressValid = (value: string) => value.trim() !== ''
 const isZipCodeValid = (value: string) => value.trim().length === 5
 
@@ -25,6 +27,9 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
   const [showThankYouModal, setShowThankYouModal] = useState(false)
   const cartItems = useSelector((state: RootState) => state.cart)
   const totalCartPrice = useSelector((state: RootState) => state.cart.totalCartPrice)
+
+  const dispatch = useDispatch()
+
   //checkFirstName
   const {
     value: firstNameValue,
@@ -73,7 +78,10 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
   const dateClasses = dateIsTouched && dateHasError ? 'date-input-error' : 'date-input'
 
   //checkGender this one cant use the useInput costumhook
-  const [selectValue, setSelectValue] = useState<string | null>()
+  const DEFAULT_SELECT_VALUE = 'Other'
+  const valueOptions = ['Male', 'Female', 'Other']
+  const [selectValue, setSelectValue] = useState<string>(DEFAULT_SELECT_VALUE)
+
   //checkAdress
   const {
     value: adressValue,
@@ -98,9 +106,11 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
 
   //chekBox this one cant use the useInput costumhook becuase its value cannot be changed
   const [checkBoxValue, setCheckBoxValue] = useState(false)
-  //Form Handleing
-  const [formHasError, setFormHasError] = useState<boolean>(false)
 
+  console.log(selectValue)
+  //Form Handleing
+  const [formError, setFormError] = useState<string>('')
+  const [sendingData, setSendingData] = useState(false)
   const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (
@@ -114,33 +124,40 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
       checkBoxValue
     ) {
       ;(async () => {
-        const response = await fetch('http://localhost:3000/orders', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ products: cartItems, totalPrice: totalCartPrice }),
-        })
+        try {
+          setSendingData(true)
+          await fetch('http://localhost:3000/orders', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ products: cartItems, totalPrice: totalCartPrice }),
+          })
+          setShowCheckoutModal(false)
+          setShowThankYouModal(true)
+          dispatch(cartActions.removeAllItems())
+          setSendingData(false)
+        } catch (err) {
+          setFormError('Looks like something went wrong try submiting again')
+          setSendingData(false)
+        }
       })()
-      e.currentTarget.reset()
-      setShowCheckoutModal(false)
-      setShowThankYouModal(true)
     } else {
-      setFormHasError(true)
+      setFormError('Some of the data is invalid please check your data')
     }
   }
 
   useEffect(() => {
-    if (formHasError) {
+    if (formError.length > 1) {
       const timer = setTimeout(() => {
-        setFormHasError(false)
+        setFormError('')
       }, 3500)
       return () => {
         clearTimeout(timer)
       }
     }
-  }, [formHasError])
+  }, [formError])
 
   return (
     <motion.div
@@ -218,7 +235,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                   <AnimatePresence>
                     {emailHasError && (
                       <div className={classes.error}>
-                        <ErrorMessage errorMessage="Email must include @" />
+                        <ErrorMessage errorMessage="Email must be of format: a@a.com" />
                       </div>
                     )}
                   </AnimatePresence>
@@ -243,10 +260,12 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                   </div>
                   <div className={classes['gender-input']}>
                     <label htmlFor="name">Gender</label>
-                    <select onChange={(e) => setSelectValue(e.target.value)} placeholder="Other">
-                      <option value={'Other'}>Other</option>
-                      <option value={'Male'}>Male</option>
-                      <option value={'Female'}>Female</option>
+                    <select value={selectValue} onChange={(e) => setSelectValue(e.target.value)} placeholder="Other ">
+                      {valueOptions.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -288,11 +307,13 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                   <input onClick={() => setCheckBoxValue(!checkBoxValue)} type="checkbox" />
                   <label htmlFor="adress">I agree</label>
                 </div>
-                <button type="submit">Checkout</button>
+                <motion.button whileTap={{ scale: 1.1 }} type="submit">
+                  {sendingData ? <LoadingSpiner /> : 'Checkout'}
+                </motion.button>
                 <AnimatePresence>
-                  {formHasError && (
+                  {formError.length > 1 && (
                     <div className={classes['form-error']}>
-                      <ErrorMessage errorMessage="Some of the data is invalid please check your data" />
+                      <ErrorMessage errorMessage={formError} />
                     </div>
                   )}
                 </AnimatePresence>
@@ -301,7 +322,9 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
           </div>
         )}
       </AnimatePresence>
-      <AnimatePresence exitBeforeEnter>{showThankYouModal && <ThankYouModal />}</AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
+        {showThankYouModal && <ThankYouModal setCheckoutModal={setCheckoutModal} />}
+      </AnimatePresence>
     </motion.div>
   )
 }

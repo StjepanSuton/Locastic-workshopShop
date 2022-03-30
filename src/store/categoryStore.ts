@@ -1,18 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-const storage = localStorage.getItem('locastic-workShop-category')
+
+interface Category {
+  selectedCategory: string
+  categorysShowing: number
+}
 
 const DEFAULT_CATEGORY = 'all'
 
-const initialState: string = storage === null ? DEFAULT_CATEGORY : JSON.parse(storage)
+const initialState: Category = {
+  selectedCategory: DEFAULT_CATEGORY,
+  categorysShowing: 9,
+}
 
 export const categorySlice = createSlice({
   name: 'category',
   initialState,
   reducers: {
     selectCategory: (state, action: PayloadAction<string>) => {
-      return (state = action.payload)
+      state.selectedCategory = action.payload
+    },
+    shownCategory: (state, action: PayloadAction<number>) => {
+      state.categorysShowing = state.categorysShowing + action.payload
     },
   },
 })
 
-export const { selectCategory } = categorySlice.actions
+export const categoryActions = categorySlice.actions

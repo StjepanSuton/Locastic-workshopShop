@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react'
 import classes from './ShopGallery.module.scss'
 import GalleryItem from '../../Reusables/GalleryItem'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 import { AnimatePresence, motion } from 'framer-motion'
 import LoadingSpiner from '../../Reusables/LoadingSpiner'
 import { WorkshopData } from '../../Reusables/reusableInterfaces'
+import { categoryActions } from '../../../store/categoryStore'
+import { uiActions } from '../../../store/uiStore'
 
 function ShopGallery() {
+  const dispatch = useDispatch()
+
   //States
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [workshops, setWorkshops] = useState<WorkshopData[] | null>(null)
   const [filteredWorkshops, setFilteredWorkshops] = useState<WorkshopData[] | null>(null)
-  const [shownWorkshops, setShownWorkShops] = useState(9)
-  const selectedCategory = useSelector((state: RootState) => state.categorys)
+  const shownWorkshops = useSelector((state: RootState) => state.categorys.categorysShowing)
+  const selectedCategory = useSelector((state: RootState) => state.categorys.selectedCategory)
 
   const DEFAULT_CATEGORY = 'all'
 
@@ -53,12 +57,13 @@ function ShopGallery() {
         )
       } catch (err) {
         setLoading(false)
-        setError('Oops looks like something went wrong try reloading the page ' + err)
+        setError('Oops looks like something went wrong :( try reloading the page ' + err)
       }
     }
     getData()
   }, [])
 
+  //Filtering
   useEffect(() => {
     if (workshops) {
       setFilteredWorkshops(
@@ -68,10 +73,29 @@ function ShopGallery() {
           } else if (selectedCategory === workshop.category) {
             return workshop
           }
+          return null //Warning appears unless i do this
         })
       )
     }
   }, [workshops, selectedCategory])
+
+  /////////////////////////BONUS//////////////////////////
+  const idToScrollTo = useSelector((state: RootState) => state.id)
+
+  useEffect(() => {
+    if (workshops)
+      setTimeout(() => {
+        let element = document.getElementById(idToScrollTo)
+        console.log(element)
+        element &&
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest',
+          })
+        dispatch(uiActions.setScrollTarget(''))
+      }, 500)
+  }, [workshops])
 
   const calculateDisplayedWorkshops = () => {
     return filteredWorkshops?.slice(0, shownWorkshops).length
@@ -94,14 +118,14 @@ function ShopGallery() {
           <motion.div variants={container} initial="hidden" animate="show" className={classes.gallery}>
             <AnimatePresence>
               {filteredWorkshops?.slice(0, shownWorkshops).map((workshop) => (
-                <motion.div layout variants={item} key={workshop.id}>
+                <motion.div id={JSON.stringify(workshop.id)} layout variants={item} key={workshop.id}>
                   <GalleryItem workshop={workshop} />
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
           {filteredWorkshops && filteredWorkshops.length >= shownWorkshops ? (
-            <h4 className={classes['load-more']} onClick={() => setShownWorkShops((prevState) => prevState + 9)}>
+            <h4 className={classes['load-more']} onClick={() => dispatch(categoryActions.shownCategory(9))}>
               Load More
             </h4>
           ) : (

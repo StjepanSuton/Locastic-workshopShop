@@ -197,25 +197,71 @@
   ],
   "orders": [
     {
-      "a": 1,
-      "b": "Textual content",
-      "id": 1
-    },
-    {
-      "cartItems": {
+      "products": {
         "items": [
+          {
+            "id": 2,
+            "imageUrl": "https://pbs.twimg.com/media/EL--sgSXYAAnOX2.jpg",
+            "title": "YouTube for your business!",
+            "price": 400,
+            "quantity": 35,
+            "totalPrice": 14000
+          },
           {
             "id": 1,
             "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
             "title": "When you get lost in API testing",
             "price": 350,
-            "quantity": 1,
-            "totalPrice": 350
+            "quantity": 22,
+            "totalPrice": 7700
+          },
+          {
+            "id": 4,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg",
+            "title": "Fighting E-Commerce Sameness",
+            "price": 450,
+            "quantity": 2,
+            "totalPrice": 900
           }
         ],
-        "totalQuantity": 1,
-        "totalCartPrice": 350
+        "totalQuantity": 59,
+        "totalCartPrice": 22600
       },
+      "totalPrice": 22600,
+      "id": 1
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 2,
+            "imageUrl": "https://pbs.twimg.com/media/EL--sgSXYAAnOX2.jpg",
+            "title": "YouTube for your business!",
+            "price": 400,
+            "quantity": 57,
+            "totalPrice": 22800
+          },
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 22,
+            "totalPrice": 7700
+          },
+          {
+            "id": 4,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg",
+            "title": "Fighting E-Commerce Sameness",
+            "price": 450,
+            "quantity": 2,
+            "totalPrice": 900
+          }
+        ],
+        "totalQuantity": 81,
+        "totalCartPrice": 31400
+      },
+      "totalPrice": 31400,
       "id": 2
     },
     {
@@ -235,6 +281,132 @@
       },
       "totalPrice": 350,
       "id": 3
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 2,
+            "imageUrl": "https://pbs.twimg.com/media/EL--sgSXYAAnOX2.jpg",
+            "title": "YouTube for your business!",
+            "price": 400,
+            "quantity": 1,
+            "totalPrice": 400
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 400
+      },
+      "totalPrice": 400,
+      "id": 4
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 5
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 6
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 7
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 8
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 9
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 10
     }
   ],
   "categories": [

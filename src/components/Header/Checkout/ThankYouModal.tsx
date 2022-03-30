@@ -1,7 +1,9 @@
 import classes from './ThankYouModal.module.scss'
 import { motion } from 'framer-motion'
 import useWindowDimensions from '../../../hooks/useWindowDimension'
-function ThankYouModal() {
+import { useNavigate } from 'react-router'
+function ThankYouModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<React.SetStateAction<boolean>> }) {
+  const navigate = useNavigate()
   const { windowWidth } = useWindowDimensions()
 
   return (
@@ -16,7 +18,15 @@ function ThankYouModal() {
       >
         <h2>Thank you!</h2>
         <h6>Go back to the shop and maybe find something else you like</h6>
-        <button>Back to Shop</button>
+        <motion.button
+          whileTap={{ scale: 1.1 }}
+          onClick={() => {
+            navigate('/workshop')
+            setCheckoutModal(false)
+          }}
+        >
+          Back to Shop
+        </motion.button>
       </motion.div>
     </div>
   )

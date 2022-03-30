@@ -11,11 +11,13 @@ import useWindowDimensions from '../../hooks/useWindowDimension'
 import { formatToLocalCurrency, formatToLocalDate, formatToLocalTime } from './formaters'
 import { WorkshopData } from './reusableInterfaces'
 
-
 function GalleryItem({ workshop }: { workshop: WorkshopData }) {
   const { windowWidth } = useWindowDimensions()
 
-  const navigate = useNavigate()
+  //There is a bug in react router dom you have to add
+  //an additional navigate(0) method for the page to redirect you
+  //if your page has similar params like here
+  let navigate = useNavigate()
   const dispatch = useDispatch()
 
   const { id, imageUrl, title, price, category, date } = workshop
@@ -39,7 +41,15 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
       className={classes['gallery-item-container']}
     >
       <div className={classes['image-container']}>
-        <img onClick={() => navigate(`/workshop/${id}`)} className={classes.banner} src={imageUrl} alt={title} />
+        <img
+          onClick={() => {
+            navigate(`/workshop/${id}`)
+            navigate(0)
+          }}
+          className={classes.banner}
+          src={imageUrl}
+          alt={title}
+        />
         <div className={classes['icon-container']}>
           <Icon category={category} classPicker={'icon-shop'} />
         </div>
@@ -55,7 +65,14 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
           </div>
           <h6>{formatToLocalTime(date)}</h6>
         </div>
-        <h4 onClick={() => navigate(`/workshop/${id}`)}>{title}</h4>
+        <h4
+          onClick={() => {
+            navigate(`/workshop/${id}`)
+            navigate(0)
+          }}
+        >
+          {title}
+        </h4>
         <div className={classes['price-bottun']}>
           <h3>
             {formatToLocalCurrency(price)}

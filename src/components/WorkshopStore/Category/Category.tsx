@@ -3,21 +3,19 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useWindowDimensions from '../../../hooks/useWindowDimension'
 import { RootState } from '../../../store'
-import { selectCategory } from '../../../store/categoryStore'
+import { categoryActions } from '../../../store/categoryStore'
 import Icon from '../../Reusables/Icon'
 import downIcon from '../../../assets/bluearrowdown.svg'
 import classes from './Category.module.scss'
 import { formatFirstLetterToUpperCase } from '../../Reusables/formaters'
 function Category() {
   const { windowWidth } = useWindowDimensions()
-
+  const dispatch = useDispatch()
   //States
   const [error, setError] = useState<string | null>(null)
   const [categories, setCategories] = useState<string[] | null>(null)
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false)
-  const dispatch = useDispatch()
-
-  const selectedCategory = useSelector((state: RootState) => state.categorys)
+  const selectedCategory = useSelector((state: RootState) => state.categorys.selectedCategory)
 
   const DEFAULT_CATEGORY = 'all'
 
@@ -47,7 +45,11 @@ function Category() {
 
   const dekstopCategorys = () => {
     return categories?.map((category) => (
-      <div onClick={() => dispatch(selectCategory(category))} className={classes.categorys} key={category}>
+      <div
+        onClick={() => dispatch(categoryActions.selectCategory(category))}
+        className={classes.categorys}
+        key={category}
+      >
         <div className={classes['icon-container']}>
           <Icon
             category={category}
@@ -84,7 +86,7 @@ function Category() {
                 <h6
                   key={category}
                   onClick={() => {
-                    dispatch(selectCategory(category))
+                    dispatch(categoryActions.selectCategory(category))
                     setShowCategoryDropdown(false)
                   }}
                   title={formatFirstLetterToUpperCase(category)}

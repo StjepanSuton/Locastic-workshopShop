@@ -18,11 +18,13 @@
 }
 .side-page-container {
   padding-top: 1rem;
+  padding-left: 2rem;
   width: 20%;
 
   @include media('<=tablet') {
     width: unset;
     padding-top: 0;
+    padding-left: 0;
   }
   .arrow-back {
     cursor: pointer;
@@ -56,10 +58,13 @@
   width: 100px;
 }
 .error {
-  margin-top: 90px;
-  width: 100vw;
-  height: 60vh;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50vw;
+  height: 80vh;
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
 }

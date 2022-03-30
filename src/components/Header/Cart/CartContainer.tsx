@@ -75,6 +75,7 @@ function CartContainer({
             </h2>
             {cartItems.length > 0 ? (
               <motion.button
+                whileTap={{ scale: 1.1 }}
                 onClick={() => {
                   setCheckoutModal(true)
                   setShowCart(false)

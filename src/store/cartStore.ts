@@ -8,6 +8,19 @@ interface CartItem {
   quantity: number
   totalPrice: number
 }
+
+const calculateItemsQuantity = (items: CartItem[]) => {
+  return items.reduce((previousValue: number, item: CartItem) => {
+    return previousValue + item.quantity
+  }, 0)
+}
+
+const calculateItemsPrice = (items: CartItem[]) => {
+  return items.reduce((previousValue: number, item: CartItem) => {
+    return previousValue + item.totalPrice
+  }, 0)
+}
+
 const storage = localStorage.getItem('locastic-workShop-items')
 const items: CartItem[] = storage === null ? [] : JSON.parse(storage)
 const totalQuantity: number = 0
@@ -28,31 +41,19 @@ export const cartSlice = createSlice({
           quantity: newItem.quantity,
           totalPrice: newItem.quantity * newItem.price,
         })
-        state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
-          return previousValue + item.quantity
-        }, 0)
-        state.totalCartPrice = state.items.reduce((previousValue: number, item: CartItem) => {
-          return previousValue + item.totalPrice
-        }, 0)
+        state.totalQuantity = calculateItemsQuantity(state.items)
+        state.totalCartPrice = calculateItemsPrice(state.items)
       } else {
         if (existingItem.quantity + newItem.quantity > 99) {
           existingItem.quantity = 99
           existingItem.totalPrice = newItem.price * 99
-          state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
-            return previousValue + item.quantity
-          }, 0)
-          state.totalCartPrice = state.items.reduce((previousValue: number, item: CartItem) => {
-            return previousValue + item.totalPrice
-          }, 0)
+          state.totalQuantity = calculateItemsQuantity(state.items)
+          state.totalCartPrice = calculateItemsPrice(state.items)
         } else {
           existingItem.quantity = existingItem.quantity + newItem.quantity
           existingItem.totalPrice = existingItem.totalPrice + newItem.totalPrice
-          state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
-            return previousValue + item.quantity
-          }, 0)
-          state.totalCartPrice = state.items.reduce((previousValue: number, item: CartItem) => {
-            return previousValue + item.totalPrice
-          }, 0)
+          state.totalQuantity = calculateItemsQuantity(state.items)
+          state.totalCartPrice = calculateItemsPrice(state.items)
         }
       }
     },
@@ -61,22 +62,19 @@ export const cartSlice = createSlice({
       const existingEntry = state.items.find((item) => item.id === newEntry.id)
       existingEntry!.quantity = newEntry.quantity
       existingEntry!.totalPrice = newEntry.totalPrice
-      state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
-        return previousValue + item.quantity
-      }, 0)
-      state.totalCartPrice = state.items.reduce((previousValue: number, item: CartItem) => {
-        return previousValue + item.totalPrice
-      }, 0)
+      state.totalQuantity = calculateItemsQuantity(state.items)
+      state.totalCartPrice = calculateItemsPrice(state.items)
     },
     removeItemFromCart: (state, action: PayloadAction<number>) => {
       const id = action.payload
       state.items = state.items.filter((item) => item.id !== id)
-      state.totalQuantity = state.items.reduce((previousValue: number, item: CartItem) => {
-        return previousValue + item.quantity
-      }, 0)
-      state.totalCartPrice = state.items.reduce((previousValue: number, item: CartItem) => {
-        return previousValue + item.totalPrice
-      }, 0)
+      state.totalQuantity = calculateItemsQuantity(state.items)
+      state.totalCartPrice = calculateItemsPrice(state.items)
+    },
+    removeAllItems: (state) => {
+      state.items = []
+      state.totalQuantity = 0
+      state.totalCartPrice = 0
     },
   },
 })

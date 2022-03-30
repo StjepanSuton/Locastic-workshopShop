@@ -1,3 +1,4 @@
+@import '../../sass/variables';
 .lds-dual-ring {
   display: inline-block;
   width: 80px;
@@ -10,8 +11,8 @@
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid rgb(0, 0, 0);
-  border-color: rgb(0, 0, 0) transparent #fff transparent;
+  border: 6px solid $color-primary;
+  border-color: $color-primary transparent #fff transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {
