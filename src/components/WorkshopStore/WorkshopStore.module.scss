@@ -1,11 +1,11 @@
 @import '../../sass/brakepoints';
-
+@import '../../sass/variables';
 .workshop-container {
   margin-top: 90px;
   display: flex;
   flex-direction: row;
   @include media('<=tablet') {
-    padding: 1rem;
+    padding: $s-padding;
     flex-direction: column;
     align-items: center;
   }

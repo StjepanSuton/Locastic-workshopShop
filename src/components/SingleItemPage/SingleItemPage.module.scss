@@ -1,11 +1,12 @@
 @import '../../sass/brakepoints';
+@import '../../sass/variables';
 .all-container {
   overflow-x: hidden;
 }
 .page-container {
+  z-index: 1;
   margin-top: 90px;
   position: relative;
-  z-index: 1;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -17,8 +18,8 @@
   }
 }
 .side-page-container {
-  padding-top: 1rem;
-  padding-left: 2rem;
+  padding-top: $s-padding;
+  padding-left: $medium-padding;
   width: 20%;
 
   @include media('<=tablet') {
@@ -39,9 +40,9 @@
   }
   h6 {
     margin: 0;
-    margin-left: 1rem;
+    margin-left: $s-margin;
     font-weight: 700;
-    font-size: 15px;
+    font-size: $medium-font;
     line-height: 125%;
   }
 }

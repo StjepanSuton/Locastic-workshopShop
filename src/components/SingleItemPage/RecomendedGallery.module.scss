@@ -1,9 +1,10 @@
 @import '../../sass/brakepoints';
+@import '../../sass/variables';
 .recomended-container {
-  background-color: #f2f2f2;
   width: 100vw;
   display: flex;
   flex-direction: row;
+  background-color: $color-light-grey;
   @include media('<=tablet') {
     flex-direction: column;
     align-items: center;
@@ -18,14 +19,14 @@
 }
 .recomended-pages-container {
   width: 75%;
-  padding: 1rem;
+  padding: $s-padding;
   h2 {
     margin: 1rem 0rem 1rem 0rem;
     font-weight: 700;
-    font-size: 40px;
+    font-size: $xxxl-font;
     line-height: 125%;
     @include media('<=tablet') {
-      font-size: 32px;
+      font-size: $xxl-font;
     }
   }
 }
@@ -33,7 +34,7 @@
   display: grid;
   grid-template-columns: 2fr 2fr 2fr;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: $l-margin;
   @include media('<=tablet') {
     grid-template-columns: 2fr 2fr;
   }

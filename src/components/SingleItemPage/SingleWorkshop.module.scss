@@ -2,9 +2,9 @@
 @import '../../sass/brakepoints';
 .workshop-container {
   width: 75%;
-  padding: 1rem;
+  padding: $s-padding;
   @include media('<=tablet') {
-    margin-top: 1rem;
+    margin-top: $s-margin;
     padding: 0;
     width: unset;
   }
@@ -35,7 +35,7 @@
 .workshop-description-container {
   z-index: 99;
   width: 50%;
-  padding-right: 1rem;
+  padding-right: $s-padding;
   @include media('<=tablet') {
     width: unset;
   }
@@ -44,7 +44,7 @@
     font-weight: 700;
     font-size: 50px;
     line-height: 120%;
-    color: #0097cc;
+    color: $color-secondary;
     @include media('<=tablet') {
       font-size: 36px;
     }
@@ -52,7 +52,7 @@
   span {
     margin-right: 0.5rem;
     font-weight: 700;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 125%;
     @include media('<=tablet') {
       font-size: 14px;
@@ -64,44 +64,44 @@
     font-size: 24px;
     line-height: 125%;
     @include media('<=tablet') {
-      padding-left: 1rem;
-      font-size: 18px;
+      padding-left: $s-padding;
+      font-size: $l-font;
     }
   }
   p {
     margin: 1rem 0rem 1rem 0rem;
     font-weight: 500;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 150%;
     @include media('<=tablet') {
-      padding-left: 1rem;
+      padding-left: $s-padding;
       font-size: 14px;
     }
   }
 }
 .time-info {
   position: relative;
-  margin-top: 1rem;
+  margin-top: $s-margin;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   @include media('<=tablet') {
-    padding-left: 1rem;
+    padding-left: $s-padding;
   }
   .time-icon {
     padding: 0;
-    margin-right: 0.5rem;
+    margin-right: $xs-margin;
     width: 20px;
     height: 20px;
   }
   h6 {
     margin: 0;
-    margin-right: 1rem;
+    margin-right: $s-margin;
   }
 }
 .category-icon-container {
-  margin-right: 1rem;
+  margin-right: $s-margin;
   display: flex;
   align-items: center;
   justify-content: center;

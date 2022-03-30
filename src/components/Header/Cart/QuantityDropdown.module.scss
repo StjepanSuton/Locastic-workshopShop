@@ -1,11 +1,12 @@
+@import '../../../sass/variables';
 .select-container {
   position: relative;
 
   .arrow-down {
-    padding: 0;
-    margin-left: 0.5rem;
     width: 10px;
     height: 10px;
+    padding: 0;
+    margin-left: $xs-margin;
   }
   .select {
     position: relative;
@@ -13,7 +14,6 @@
     flex-direction: row;
     align-items: center;
     z-index: 6;
-    position: relative;
     width: 50px;
     height: 40px;
     border: 1px solid #0097cc;
@@ -21,24 +21,24 @@
     border-radius: 8px;
     outline: none;
     font-weight: 700;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 125%;
-    padding: 0.5rem;
+    padding: $xs-padding;
     background-color: white;
   }
   .options-container {
     text-align: center;
+    z-index: 1;
     position: absolute;
+    bottom: -80px;
+    left: 0px;
+    width: 50px;
+    max-height: 80px;
     box-sizing: border-box;
     border-radius: 0px 0px 8px 8px;
     border: 1px solid rgba(191, 191, 191, 0.224);
-    z-index: 1;
-    width: 50px;
-    max-height: 80px;
-    bottom: -80px;
-    left: 0px;
     overflow-y: scroll;
-    background-color: white;
+    background-color: $color-white;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
     .option {
@@ -46,12 +46,12 @@
       border-bottom: 1px solid rgba(191, 191, 191, 0.272);
     }
     .option:hover {
-      background-color: #0097cc;
+      background-color: $color-secondary;
     }
     label {
       width: 100%;
       font-weight: 700;
-      font-size: 13px;
+      font-size: $s-font;
       line-height: 125%;
     }
   }

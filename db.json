@@ -407,6 +407,24 @@
       },
       "totalPrice": 350,
       "id": 10
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 11
     }
   ],
   "categories": [

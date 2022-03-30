@@ -1,15 +1,15 @@
 @import '../../../sass/variables';
 @import '../../../sass/brakepoints';
 .backdrop {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 98;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(61, 61, 61, 0.381);
   overflow-y: scroll;
   overflow-x: hidden;
@@ -25,7 +25,6 @@
 
 .modal {
   position: absolute;
-  overflow-x: hidden;
   top: 2rem;
   width: 100%;
   display: flex;
@@ -33,6 +32,7 @@
   justify-content: center;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  overflow-x: hidden;
 }
 .modal::-webkit-scrollbar {
   display: none;
@@ -41,31 +41,31 @@
   z-index: 99;
   position: relative;
   width: 50%;
-  padding: 4rem;
+  padding: $xl-padding;
   box-shadow: 1px 2px 16px rgba(127, 127, 127, 0.25);
   border-radius: 16px;
   background-color: white;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  margin-bottom: 4rem;
+  margin-bottom: $xl-margin;
   @include media('<=small-tablet') {
     width: 80%;
-    padding: 3rem;
+    padding: $l-padding;
     margin-bottom: 0;
   }
   @include media('<=phone') {
     border-radius: 16px 16px 0 0;
     width: 100%;
-
     margin-bottom: 0;
   }
   img {
     position: absolute;
-    width: 15px;
-    height: 15px;
     top: 4rem;
     right: 4rem;
+    width: 15px;
+    height: 15px;
+
     @include media('<=small-tablet') {
       top: 3rem;
       right: 3rem;
@@ -75,14 +75,14 @@
     cursor: pointer;
     width: 30%;
     height: 60px;
-    margin-top: 2rem;
+    margin-top: $medium-margin;
     outline: none;
     border: none;
     background-color: $color-primary;
     box-shadow: 1px 2px 8px rgba(127, 127, 127, 0.25);
     border-radius: 6px;
     font-weight: 700;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 125%;
     @include media('<=phone') {
       width: 100%;
@@ -91,23 +91,23 @@
 }
 .title {
   font-weight: 700;
-  font-size: 40px;
+  font-size: $xxxl-font;
   line-height: 125%;
   @include media('<=phone') {
-    font-size: 32px;
+    font-size: $xxl-font;
   }
 }
 .instructions {
   width: 30%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: $s-margin;
+  margin-bottom: $s-margin;
   font-weight: 600;
-  font-size: 15px;
+  font-size: $medium-font;
   line-height: 125%;
-  color: #7f7f7f;
+  color: $color-grey;
   @include media('<=phone') {
     width: 55%;
-    font-size: 13px;
+    font-size: $s-font;
   }
 }
 
@@ -119,11 +119,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: $s-margin;
   .error {
-    position: absolute;
-    top: 0;
-    right: 0;
     position: absolute;
     top: 0;
     right: 0;
@@ -136,42 +133,42 @@
   label {
     width: 100%;
     font-weight: 700;
-    font-size: 15px;
+    font-size: $medium-font;
     line-height: 125%;
     @include media('<=phone') {
-      font-size: 13px;
+      font-size: $s-font;
     }
   }
   input {
-    margin-top: 0.5rem;
+    margin-top: $xs-margin;
     width: 100%;
     max-height: 55px;
     font-family: 'Livvic', sans-serif;
     border: none;
-    border-bottom: 2px solid #f2f2f2;
+    border-bottom: 2px solid $color-light-grey;
     padding-left: 0rem;
     font-weight: 500;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 300%;
-    color: #0d0d0d;
+    color: $font-black;
     animation: unfocus-animation 0.25s;
   }
   input:focus {
     width: 95%;
     outline: none;
-    background-color: #f2f2f2;
-    border-bottom: 2px solid #0097cc;
-    padding-left: 2rem;
+    background-color: $color-light-grey;
+    border-bottom: 2px solid $color-secondary;
+    padding-left: $medium-padding;
     animation: focus-animation 0.25s;
   }
 
   input::placeholder {
     font-weight: 500;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 150%;
     color: #7f7f7f;
     @include media('<=phone') {
-      font-size: 13px;
+      font-size: $s-font;
     }
   }
 }
@@ -180,11 +177,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: $s-margin;
   .error {
-    position: absolute;
-    top: 0;
-    right: 0;
     position: absolute;
     top: 0;
     right: 0;
@@ -196,41 +190,41 @@
   label {
     width: 100%;
     font-weight: 700;
-    font-size: 15px;
+    font-size: $medium-font;
     line-height: 125%;
     @include media('<=phone') {
-      font-size: 13px;
+      font-size: $s-font;
     }
   }
   input {
-    margin-top: 0.5rem;
+    margin-top: $xs-margin;
     width: 100%;
     max-height: 55px;
     font-family: 'Livvic', sans-serif;
     border: none;
-    border-bottom: 2px solid #ff392e;
+    border-bottom: 2px solid $color-error;
     padding: 0;
     font-weight: 500;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 300%;
-    color: #0d0d0d;
+    color: $font-black;
     animation: unfocus-animation 0.25s;
   }
   input:focus {
     width: 95%;
     outline: none;
-    background-color: #f2f2f2;
-    padding-left: 2rem;
+    background-color: $color-light-grey;
+    padding-left: $medium-padding;
     animation: focus-animation 0.25s;
   }
 
   input::placeholder {
     font-weight: 500;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 150%;
     color: #7f7f7f;
     @include media('<=phone') {
-      font-size: 13px;
+      font-size: $s-font;
     }
   }
 }
@@ -252,7 +246,7 @@
     max-height: 70px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: $s-margin;
     @include media('<=phone') {
       width: 100%;
     }
@@ -271,28 +265,28 @@
     label {
       width: 100%;
       font-weight: 700;
-      font-size: 15px;
+      font-size: $medium-font;
       line-height: 125%;
     }
     input {
-      margin-top: 0.5rem;
+      margin-top: $xs-margin;
       width: 90%;
       height: 55px;
       font-family: 'Livvic', sans-serif;
       border: none;
-      border-bottom: 2px solid #f2f2f2;
+      border-bottom: 2px solid $color-light-grey;
       padding: 0.5rem 0rem 0.5rem 0rem;
       font-weight: 500;
-      font-size: 18px;
+      font-size: $l-font;
       line-height: 150%;
-      color: #0d0d0d;
+      color: $font-black;
       @include media('<=phone') {
         width: 100%;
       }
     }
     input:focus {
       outline: none;
-      border-bottom: 2px solid #0097cc;
+      border-bottom: 2px solid $color-secondary;
     }
     input::-webkit-calendar-picker-indicator {
       background: url(../../../assets/date.svg) no-repeat;
@@ -313,7 +307,7 @@
   max-height: 70px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: $s-margin;
   @include media('<=phone') {
     width: 100%;
   }
@@ -332,21 +326,21 @@
   label {
     width: 100%;
     font-weight: 700;
-    font-size: 15px;
+    font-size: $medium-font;
     line-height: 125%;
   }
   input {
-    margin-top: 0.5rem;
+    margin-top: $xs-margin;
     width: 90%;
     height: 55px;
     font-family: 'Livvic', sans-serif;
     border: none;
-    border-bottom: 2px solid #ff392e;
+    border-bottom: 2px solid $color-error;
     padding: 0;
     font-weight: 500;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 300%;
-    color: #0d0d0d;
+    color: $font-black;
     @include media('<=phone') {
       width: 100%;
     }
@@ -378,32 +372,32 @@ input::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column;
   border: none;
-  margin-bottom: 1rem;
+  margin-bottom: $s-margin;
   @include media('<=phone') {
     width: 100%;
   }
   label {
     width: 100%;
     font-weight: 700;
-    font-size: 15px;
+    font-size: $medium-font;
     line-height: 125%;
   }
   select {
     height: 70px;
     border: none;
     font-weight: 500;
-    font-size: 18px;
+    font-size: $l-font;
     font-family: 'Livvic', sans-serif;
     line-height: 150%;
     color: #000000;
-    border-bottom: 2px solid #f2f2f2;
+    border-bottom: 2px solid $color-light-grey;
   }
   select:focus {
     outline: none;
   }
   option {
     font-weight: 500;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 150%;
     color: #000000;
   }
@@ -420,15 +414,15 @@ input[type='number'] {
   input {
     width: 32px;
     height: 32px;
-    background: #0097cc;
+    background: $color-secondary;
     border-radius: 4px;
   }
   label {
     margin-left: 1rem;
     font-weight: 600;
-    font-size: 15px;
+    font-size: $medium-font;
     line-height: 125%;
-    color: #0d0d0d;
+    color: $font-black;
   }
 }
 
@@ -438,16 +432,16 @@ input[type='number'] {
   bottom: 5rem;
   right: 2rem;
   font-weight: 600;
-  font-size: 15px;
+  font-size: $medium-font;
   line-height: 125%;
-  color: #ff392e;
+  color: $color-error;
   margin-right: 2rem;
   @include media('<=phone') {
     right: -1rem;
     bottom: 8rem;
   }
 }
-// background-color: #f2f2f2;
+// background-color: $color-light-grey;
 //padding: 0.5rem 0rem 0.5rem 2rem;
 @keyframes focus-animation {
   0% {
@@ -461,15 +455,15 @@ input[type='number'] {
     padding-left: 0.2rem;
   }
   100% {
-    background-color: #f2f2f2;
-    padding-left: 2rem;
+    background-color: $color-light-grey;
+    padding-left: $medium-padding;
   }
 }
 
 @keyframes unfocus-animation {
   0% {
-    background-color: #f2f2f2;
-    padding-left: 2rem;
+    background-color: $color-light-grey;
+    padding-left: $medium-padding;
   }
   100% {
     background-color: white;

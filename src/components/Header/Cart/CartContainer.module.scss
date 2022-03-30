@@ -1,16 +1,16 @@
 @import '../../../sass/variables';
 @import '../../../sass/brakepoints';
 .cart-container {
-  width: 26vw;
-  height: 100vh;
-  background-color: rgb(255, 255, 255);
   position: fixed;
   right: 0;
   top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5rem;
+  width: 26vw;
+  height: 100vh;
+  padding: $xs-padding;
+  background-color: $color-white;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -30,14 +30,15 @@
   display: none;
 }
 .title-container {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  width: 80%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-  width: 80%;
+  margin-top: $xs-margin;
+  margin-bottom: $s-margin;
+  padding: $s-padding;
+
   .cart-counter {
     position: relative;
     display: flex;
@@ -45,16 +46,16 @@
     align-items: center;
     .notification {
       position: absolute;
+      top: 0px;
+      left: 20px;
       width: 10px;
       height: 10px;
-      border-radius: 50%;
-      background-color: $color-secondary;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 8px;
-      top: 0px;
-      left: 20px;
+      border-radius: 50%;
+      background-color: $color-secondary;
+      font-size: $xxs-font;
       @include media('<=tablet') {
         display: none;
       }
@@ -63,15 +64,15 @@
       padding: 0;
       width: 25px;
       height: 25px;
-      margin-right: 1rem;
+      margin-right: $s-margin;
     }
     h5 {
       margin: 0;
       font-weight: 700;
-      font-size: 23px;
+      font-size: $xl-font;
       line-height: 125%;
       @include media('<=tablet') {
-        font-size: 18px;
+        font-size: $l-font;
       }
     }
   }
@@ -87,41 +88,42 @@
 .cart-infor-container {
   align-self: center;
   width: 90%;
-  margin: 0;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin: 0;
+  margin-top: $medium-margin;
+  margin-bottom: $l-margin;
+  padding: $s-padding;
+
   h5 {
     margin: 0;
-    margin-left: 1rem;
+    margin-left: $s-margin;
     font-weight: 700;
-    font-size: 12px;
+    font-size: $xs-font;
     line-height: 125%;
     color: #7f7f7f;
   }
   h2 {
     margin: 0;
-    margin-left: 1rem;
+    margin-left: $s-margin;
     font-weight: 700;
-    font-size: 32px;
+    font-size: $xxl-font;
     line-height: 125%;
   }
   span {
     margin: 0;
     margin-left: 0.5rem;
     font-weight: 700;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 125%;
   }
   button {
-    align-self: center;
     cursor: pointer;
+    align-self: center;
     width: 80%;
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: $s-margin;
+    padding:$s-padding;
     outline: none;
     border: none;
     color: white;
@@ -129,10 +131,10 @@
     box-shadow: 1px 2px 8px rgba(127, 127, 127, 0.25);
     border-radius: 6px;
     font-weight: 700;
-    font-size: 18px;
+    font-size: $l-font;
     line-height: 125%;
     @include media('<=phone') {
-      margin-top: 3rem;
+      margin-top: $l-margin;
     }
   }
 }

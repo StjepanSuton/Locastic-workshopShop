@@ -1,4 +1,5 @@
 @import '../../../sass/brakepoints';
+@import '../../../sass/variables';
 .gallery-container {
   display: flex;
   width: 80%;
@@ -16,14 +17,14 @@
     font-size: 30px;
     line-height: 125%;
     @include media('<=tablet') {
-      padding-left: 1rem;
+      padding-left: $s-padding;
     }
   }
   h6 {
     font-weight: 700;
-    font-size: 12px;
+    font-size: $xs-font;
     line-height: 125%;
-    color: #7f7f7f;
+    color: $font-grey;
     @include media('<=tablet') {
       padding-left: 1rem;
     }
@@ -62,8 +63,8 @@
 .gallery {
   width: 100%;
   height: 100%;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
+  padding-top: $medium-padding;
+  padding-bottom: $s-padding;
   display: grid;
   grid-template-columns: 2fr 2fr 2fr;
   grid-gap: 1.5rem;
@@ -89,7 +90,7 @@
 .load-more:after {
   display: block;
   content: '';
-  border-bottom: solid 3px #019fb6;
+  border-bottom: solid 3px $color-secondary;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }

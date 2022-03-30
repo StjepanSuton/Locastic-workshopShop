@@ -2,18 +2,18 @@
 @import '../../sass/brakepoints';
 .header-container {
   z-index: 99;
-  width: 100vw;
-  height: 90px;
   position: fixed;
-  top: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  top: 0;
+  width: 100vw;
+  height: 90px;
   background-color: $color-primary;
   img {
     cursor: pointer;
-    padding: 1rem;
+    padding: $s-padding;
     width: 105px;
     @include media('<=phone') {
       width: 90px;
@@ -27,15 +27,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
-  padding-right: 6rem;
+  padding: $s-padding;
+  padding-right: $xxl-padding;
   @include media('<=tablet') {
-    padding-right: 3rem;
+    padding-right: $l-padding;
   }
   h6 {
     margin: 0;
     font-weight: 700;
-    font-size: 12px;
+    font-size: $xs-font;
   }
   img {
     padding: 0;
@@ -47,17 +47,18 @@
 }
 .notification {
   position: absolute;
+  top: -5px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: $color-secondary;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8px;
+  font-size: $xxs-font;
   font-weight: 700;
-  top: -5px;
-  right: 5px;
+
   @include media('<=tablet') {
     right: unset;
     width: 15px;

@@ -1,17 +1,18 @@
 @import '../../../sass/brakepoints';
+@import '../../../sass/variables';
 .category-container {
   position: relative;
   width: 15%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  padding: 2rem;
+  padding: $medium-padding;
   @include media('<=tablet') {
     width: 100%;
     padding: 0;
   }
   .arrow-category {
-    padding-left: 1rem;
+    padding-left: $s-padding;
     cursor: pointer;
     position: relative;
     display: flex;
@@ -28,12 +29,12 @@
       background-color: white;
     }
     h5 {
-      padding: 1rem;
-      padding-left: 2rem;
+      padding: $s-padding;
+      padding-left: $medium-padding;
       width: 100%;
       height: 100%;
-      font-size: 18px;
-      color: #0097cc;
+      font-size: $l-font;
+      color: $color-secondary;
       z-index: 3;
       position: relative;
       background-color: white;
@@ -41,7 +42,7 @@
   }
   .category-dropdown-container {
     z-index: 2;
-    padding-left: 1rem;
+    padding-left: $s-padding;
     bottom: -140px;
     position: absolute;
     display: flex;
@@ -52,17 +53,17 @@
     h6 {
       cursor: pointer;
       padding: 0.2rem;
-      font-size: 18px;
-      color: #0097cc;
+      font-size: $l-font;
+      color: $color-secondary;
     }
   }
   .title {
-    margin: 1rem;
+    margin: $s-margin;
     color: #7f7f7f;
     font-size: 12px;
     font-weight: 700;
     margin-left: 1.5rem;
-    margin-top: 3rem;
+    margin-top: $l-margin;
   }
 }
 .categorys {
@@ -70,43 +71,43 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: $s-margin;
   .icon-container {
     width: 1rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: 0.5rem;
+    margin-right: $xs-margin;
   }
   .category-title {
     margin: 0;
     font-size: 20px;
     line-height: 125%;
-    color: black;
+    color: $font-black;
   }
 }
 .category-title:hover {
-  color: #019fb6;
+  color: $color-secondary;
   animation: color-change-blue 250ms;
 }
 .category-title:after {
   display: block;
   content: '';
-  color: #019fb6;
-  border-bottom: solid 2px #019fb6;
+  color: $color-secondary;
+  border-bottom: solid 2px $color-secondary;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
 .category-title:hover:after {
   transform: scaleX(1);
-  color: #019fb6;
+  color: $color-secondary;
 }
 .category-title-active {
   margin: 0;
   font-size: 20px;
   line-height: 125%;
-  color: #019fb6;
-  border-bottom: solid 2px #019fb6;
+  color: $color-secondary;
+  border-bottom: solid 2px $color-secondary;
 }
 
 @keyframes color-change-blue {
@@ -114,6 +115,6 @@
     color: rgb(0, 0, 0);
   }
   100% {
-    color: #019fb6;
+    color: $color-secondary;
   }
 }
