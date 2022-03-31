@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+# LOCASTIC TINEL ZADATAK
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###About
+A small workshop shop with an option to purchase workshops and view details of a single workshop
 
-## Available Scripts
+There are two branches:
+The master branch strictly only usses what is required by the task and follows the design,
+and the additional-features branch adds a few of my ideas:
+- Added a scroll to top button at the bottom of the gallery after scrolling Y-axis 300px.
+- Added a cart quantity counter in the notification badge in tablet and mobile viewport.
+- Added a toast notification if a user tries to add more than 99 of a single workshop with a info message.
+- Added support for local storage for the cart so when a user vists the page again or reloads the page cart state is not lost
 
-In the project directory, you can run:
+##Deployment
 
-### `npm start`
+master branch deployment:
+https://locastic-default.web.app/workshop
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+additional-features branch deployment:
+https://locas-de21f.web.app/workshop
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How to run on a local machine
 
-### `npm test`
+Clone the app run npm i.
+After all the dependecies have been installed open a second terminal and run json-server --watch db.json
+On your initial terminal run npm start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
