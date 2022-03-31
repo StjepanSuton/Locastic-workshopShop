@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router'
 import useWindowDimensions from '../../hooks/useWindowDimension'
 import { formatToLocalCurrency, formatToLocalDate, formatToLocalTime } from './formaters'
 import { WorkshopData } from './reusableInterfaces'
+import { DEFAULT_CURRENCY } from './defaultValues'
 
 function GalleryItem({ workshop }: { workshop: WorkshopData }) {
   const { windowWidth } = useWindowDimensions()
@@ -71,7 +72,7 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
         <div className={classes['price-bottun']}>
           <h3>
             {formatToLocalCurrency(price)}
-            <span>EUR</span>
+            <span>{DEFAULT_CURRENCY}</span>
           </h3>
           <motion.button onClick={addItem} whileTap={{ scale: 1.1 }}>
             {windowWidth > 650 ? 'Add to Cart' : <img src={cartIcon} alt="cartIcon" />}

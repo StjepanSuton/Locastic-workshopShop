@@ -12,7 +12,7 @@ import LoadingSpiner from '../../Reusables/LoadingSpiner'
 import { DEFAULT_SELECT_VALUE } from '../../Reusables/defaultValues'
 
 const isNameValid = (value: string) => {
-  // in [a-z] č,ć... are not allowed, - is allowed here
+  // in [a-z] č,ć... are not allowed refactored it .../ of speical symbols - is allowed
   if (value.trim() !== '' && /^([^0-9^`~!@#$%^&*()_+={}[\]|\\:;“’<,>.?๐฿]*)$/.test(value)) {
     return true
   } else {
