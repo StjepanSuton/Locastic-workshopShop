@@ -22,7 +22,7 @@ https://locas-de21f.web.app/workshop
 ### How to run on a local machine
 
 Clone the app run npm i.
-After all the dependecies have been installed open a second terminal and run json-server --watch db.json
+After all the dependecies have been installed open a second terminal and run json-server --watch db.json.
 On your initial terminal run npm start
 
 
