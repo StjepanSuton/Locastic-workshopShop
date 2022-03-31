@@ -9,6 +9,8 @@ import { WorkshopData } from '../../Reusables/reusableInterfaces'
 import { categoryActions } from '../../../store/categoryStore'
 import { uiActions } from '../../../store/uiStore'
 import { DEFAULT_CATEGORY } from '../../Reusables/defaultValues'
+import useGetScrollPosition from '../../../hooks/useOnScreen'
+import arrowdownIcon from '../../../assets/arrowdown.svg'
 
 function ShopGallery() {
   const dispatch = useDispatch()
@@ -20,6 +22,9 @@ function ShopGallery() {
   const [filteredWorkshops, setFilteredWorkshops] = useState<WorkshopData[] | null>(null)
   const shownWorkshops = useSelector((state: RootState) => state.categorys.categorysShowing)
   const selectedCategory = useSelector((state: RootState) => state.categorys.selectedCategory)
+
+  //Getting scroll position for additional features
+  const scrollPosition = useGetScrollPosition()
 
   //Animation settings
   const container = {
@@ -85,7 +90,6 @@ function ShopGallery() {
     if (workshops)
       setTimeout(() => {
         let element = document.getElementById(idToScrollTo)
-        console.log(element)
         element &&
           element.scrollIntoView({
             behavior: 'smooth',
@@ -130,6 +134,21 @@ function ShopGallery() {
           ) : (
             ''
           )}
+          <AnimatePresence>
+            {scrollPosition > 300 && (
+              <motion.button
+                whileTap={{ scale: 1.5 }}
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6 }}
+                className={classes['scroll-to-top']}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
+                <img src={arrowdownIcon} alt="arowIcon" />
+              </motion.button>
+            )}
+          </AnimatePresence>
         </div>
       )}
     </>

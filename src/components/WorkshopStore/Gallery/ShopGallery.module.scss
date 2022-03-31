@@ -95,3 +95,22 @@
 .load-more:hover:after {
   transform: scaleX(1);
 }
+.scroll-to-top {
+  cursor: pointer;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  background-color: $color-secondary;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  @include media('<=phone') {
+    right: unset;
+    left: 1rem;
+  }
+  img {
+    transform: rotate(180deg);
+  }
+}
