@@ -85,7 +85,6 @@ function ShopGallery() {
     if (workshops)
       setTimeout(() => {
         let element = document.getElementById(idToScrollTo)
-        console.log(element)
         element &&
           element.scrollIntoView({
             behavior: 'smooth',

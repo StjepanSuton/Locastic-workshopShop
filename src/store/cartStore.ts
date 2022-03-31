@@ -21,8 +21,7 @@ const calculateItemsPrice = (items: CartItem[]) => {
   }, 0)
 }
 
-const storage = localStorage.getItem('locastic-workShop-items')
-const items: CartItem[] = storage === null ? [] : JSON.parse(storage)
+const items: CartItem[] = []
 const totalQuantity: number = 0
 const totalCartPrice: number = 0
 export const cartSlice = createSlice({
