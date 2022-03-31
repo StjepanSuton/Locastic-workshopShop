@@ -9,6 +9,7 @@ import { RootState } from '../../../store'
 import useInput from '../../../hooks/use-input'
 import { cartActions } from '../../../store/cartStore'
 import LoadingSpiner from '../../Reusables/LoadingSpiner'
+import { DEFAULT_SELECT_VALUE } from '../../Reusables/defaultValues'
 
 const isNameValid = (value: string) => {
   // in [a-z] č,ć... are not allowed, - is allowed here
@@ -78,7 +79,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
   const dateClasses = dateIsTouched && dateHasError ? 'date-input-error' : 'date-input'
 
   //checkGender this one cant use the useInput costumhook
-  const DEFAULT_SELECT_VALUE = 'Other'
+
   const valueOptions = ['Male', 'Female', 'Other']
   const [selectValue, setSelectValue] = useState<string>(DEFAULT_SELECT_VALUE)
 
@@ -107,7 +108,6 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
   //chekBox this one cant use the useInput costumhook becuase its value cannot be changed
   const [checkBoxValue, setCheckBoxValue] = useState(false)
 
-  console.log(selectValue)
   //Form Handleing
   const [formError, setFormError] = useState<string>('')
   const [sendingData, setSendingData] = useState(false)
@@ -190,7 +190,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
               <h6 className={classes.instructions}>Please fill in all the required information below</h6>
               <form onSubmit={formSubmitHandler}>
                 <div className={classes[firstNameClasses]}>
-                  <label htmlFor="name">First Name</label>
+                  <label>First Name</label>
                   <input
                     value={firstNameValue}
                     onChange={firstNameChangeHandler}
@@ -207,7 +207,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                   </AnimatePresence>
                 </div>
                 <div className={classes[lastNameClasses]}>
-                  <label htmlFor="name">Last Name</label>
+                  <label>Last Name</label>
                   <input
                     value={lastNameValue}
                     onChange={lastNameChangeHandler}
@@ -224,7 +224,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                   </AnimatePresence>
                 </div>
                 <div className={classes[emailClasses]}>
-                  <label htmlFor="email">Email Adress</label>
+                  <label>Email Adress</label>
                   <input
                     value={emailValue}
                     onChange={emailChangeHandler}
@@ -242,7 +242,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                 </div>
                 <div className={classes['small-input-container']}>
                   <div className={classes[dateClasses]}>
-                    <label htmlFor="name">Date of birth</label>
+                    <label>Date of birth</label>
                     <input
                       onChange={(e) => setDateValue(e.target.value)}
                       onBlur={dateValidationHandler}
@@ -259,7 +259,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                     </AnimatePresence>
                   </div>
                   <div className={classes['gender-input']}>
-                    <label htmlFor="name">Gender</label>
+                    <label>Gender</label>
                     <select value={selectValue} onChange={(e) => setSelectValue(e.target.value)} placeholder="Other ">
                       {valueOptions.map((option) => (
                         <option key={option} value={option}>
@@ -270,7 +270,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                   </div>
                 </div>
                 <div className={classes[adressClasses]}>
-                  <label htmlFor="adress">Adress</label>
+                  <label>Adress</label>
                   <input
                     value={adressValue}
                     onChange={adressChangeHandler}
@@ -287,7 +287,7 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                   </AnimatePresence>
                 </div>
                 <div className={classes[zipCodeClasses]}>
-                  <label htmlFor="adress">Zip Code</label>
+                  <label>Zip Code</label>
                   <input
                     value={zipCodeValue}
                     onChange={zipCodeChangeHandler}
@@ -305,10 +305,10 @@ function CheckoutModal({ setCheckoutModal }: { setCheckoutModal: React.Dispatch<
                 </div>
                 <div className={classes['input-checkbox']}>
                   <input onClick={() => setCheckBoxValue(!checkBoxValue)} type="checkbox" />
-                  <label htmlFor="adress">I agree</label>
+                  <label>I agree</label>
                 </div>
                 <motion.button whileTap={{ scale: 1.1 }} type="submit">
-                  {sendingData ? <LoadingSpiner /> : 'Checkout'}
+                  {sendingData ? <LoadingSpiner selectedClass={'spinner-button'} /> : 'Checkout'}
                 </motion.button>
                 <AnimatePresence>
                   {formError.length > 1 && (

@@ -7,6 +7,8 @@ import { RootState } from '../../../store'
 import CartItem from './CartItem'
 import { useEffect, useState } from 'react'
 import { formatToLocalCurrency } from '../../Reusables/formaters'
+import { CART_TYPE } from '../../Reusables/reuasblEnums'
+import { DEFAULT_CURRENCY } from '../../Reusables/defaultValues'
 
 function CartContainer({
   setShowCart,
@@ -48,7 +50,7 @@ function CartContainer({
       <div className={classes['title-container']}>
         <div className={cartClasses}>
           <img src={cartIcon} alt="cartIcon" />
-          <h5>{`${cartItemsQuantity} ${cartItemsQuantity === 1 ? 'Worskop' : 'Workshops'}`}</h5>
+          <h5>{`${cartItemsQuantity} ${cartItemsQuantity === 1 ? CART_TYPE.SINGLE : CART_TYPE.PLURAL}`}</h5>
           {cartItemsQuantity !== 0 && <span className={classes.notification}></span>}
         </div>
         <motion.img
@@ -71,7 +73,7 @@ function CartContainer({
             <h5>SUBTOTAL</h5>
             <h2>
               {formatToLocalCurrency(cartItemsPrice)}
-              <span>EUR</span>
+              <span>{DEFAULT_CURRENCY}</span>
             </h2>
             {cartItems.length > 0 ? (
               <motion.button

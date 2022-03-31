@@ -14,9 +14,6 @@ import { WorkshopData } from './reusableInterfaces'
 function GalleryItem({ workshop }: { workshop: WorkshopData }) {
   const { windowWidth } = useWindowDimensions()
 
-  //There is a bug in react router dom you have to add
-  //an additional navigate(0) method for the page to redirect you
-  //if your page has similar params like here
   let navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -44,7 +41,6 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
         <img
           onClick={() => {
             navigate(`/workshop/${id}`)
-            navigate(0)
           }}
           className={classes.banner}
           src={imageUrl}
@@ -68,7 +64,6 @@ function GalleryItem({ workshop }: { workshop: WorkshopData }) {
         <h4
           onClick={() => {
             navigate(`/workshop/${id}`)
-            navigate(0)
           }}
         >
           {title}

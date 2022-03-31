@@ -1,0 +1,14 @@
+@import '../../sass/variables';
+.option {
+  width: 100%;
+  border-bottom: 1px solid rgba(191, 191, 191, 0.272);
+}
+.option:hover {
+  background-color: $color-secondary;
+}
+label {
+  width: 100%;
+  font-weight: 700;
+  font-size: $s-font;
+  line-height: 125%;
+}

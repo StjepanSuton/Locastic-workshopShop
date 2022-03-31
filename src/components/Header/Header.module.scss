@@ -36,6 +36,9 @@
     margin: 0;
     font-weight: 700;
     font-size: $xs-font;
+    @include media('<=tablet') {
+      display: none;
+    }
   }
   img {
     padding: 0;
@@ -58,13 +61,11 @@
   background-color: $color-secondary;
   font-size: $xxs-font;
   font-weight: 700;
-
+  color: transparent;
   @include media('<=tablet') {
-    right: unset;
+    color: $font-black;
     width: 15px;
     height: 15px;
-    top: 10px;
-    left: 35px;
   }
 }
 .cart-icon {

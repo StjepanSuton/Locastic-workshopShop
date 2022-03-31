@@ -8,7 +8,8 @@ import cartIcon from '../../assets/cart.svg'
 import useWindowDimensions from '../../hooks/useWindowDimension'
 import { formatSubtotalToLocalCurrency, formatToLocalCurrency } from '../Reusables/formaters'
 import { WorkshopData } from '../Reusables/reusableInterfaces'
-
+import QuantityGenerator from '../Reusables/QuantityGenerator'
+import { DEFAULT_CURRENCY } from '../Reusables/defaultValues'
 
 function BuyTicketForm({ workshop }: { workshop: WorkshopData }) {
   const { windowWidth } = useWindowDimensions()
@@ -35,20 +36,12 @@ function BuyTicketForm({ workshop }: { workshop: WorkshopData }) {
     setTickets(0)
   }
 
-  const quantityOptionsGenerator = () => {
-    return [...Array(99).fill(1)].map((number, i) => (
-      <div key={number + i} onClick={() => setTickets(number + i)} className={classes.option}>
-        <label>{number + i}</label>
-      </div>
-    ))
-  }
-
   return (
     <div className={classes['purchase-container']}>
       {windowWidth > 1200 && <h5>Buy Your Ticket</h5>}
       <h2>
         {formatToLocalCurrency(price)}
-        <span>EUR</span>
+        <span>{DEFAULT_CURRENCY}</span>
       </h2>
       <form onSubmit={addItem} className={classes['form-container']}>
         <div className={classes['select-container']} onClick={() => setShowDropdown(!showDropdown)}>
@@ -65,7 +58,7 @@ function BuyTicketForm({ workshop }: { workshop: WorkshopData }) {
                 transition={{ duration: 0.5 }}
                 className={classes['options-container']}
               >
-                {quantityOptionsGenerator()}
+                <QuantityGenerator method={setTickets} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -80,7 +73,12 @@ function BuyTicketForm({ workshop }: { workshop: WorkshopData }) {
           )}
         </motion.button>
       </form>
-      {windowWidth > 1200 && <h6>Subtotal: {formatSubtotalToLocalCurrency(price * tickets)}EUR</h6>}
+      {windowWidth > 1200 && (
+        <h6>
+          Subtotal: {formatSubtotalToLocalCurrency(price * tickets)}
+          {DEFAULT_CURRENCY}
+        </h6>
+      )}
     </div>
   )
 }

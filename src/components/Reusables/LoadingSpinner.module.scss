@@ -1,10 +1,10 @@
 @import '../../sass/variables';
-.lds-dual-ring {
+.spinner-large {
   display: inline-block;
   width: 80px;
   height: 80px;
 }
-.lds-dual-ring:after {
+.spinner-large:after {
   content: ' ';
   display: block;
   width: 64px;
@@ -15,6 +15,24 @@
   border-color: $color-primary transparent #fff transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
+.spinner-button {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+}
+
+.spinner-button:after {
+  content: ' ';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 6px solid $color-secondary;
+  border-color: $color-secondary transparent $color-secondary transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);

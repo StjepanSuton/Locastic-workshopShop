@@ -8,6 +8,8 @@ import Icon from '../../Reusables/Icon'
 import downIcon from '../../../assets/bluearrowdown.svg'
 import classes from './Category.module.scss'
 import { formatFirstLetterToUpperCase } from '../../Reusables/formaters'
+import { DEFAULT_CATEGORY } from '../../Reusables/defaultValues'
+import { CATEGORY_TYPE, ICON_TYPE } from '../../Reusables/reuasblEnums'
 function Category() {
   const { windowWidth } = useWindowDimensions()
   const dispatch = useDispatch()
@@ -16,13 +18,6 @@ function Category() {
   const [categories, setCategories] = useState<string[] | null>(null)
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false)
   const selectedCategory = useSelector((state: RootState) => state.categorys.selectedCategory)
-
-  const DEFAULT_CATEGORY = 'all'
-
-  enum ICON_TYPE {
-    ACTIVE = 'icon-active',
-    INACTIVE = 'icon-inactive',
-  }
 
   //Fetching data
   useEffect(() => {
@@ -58,7 +53,7 @@ function Category() {
         </div>
         <h6
           title={formatFirstLetterToUpperCase(category)}
-          className={classes[selectedCategory === category ? 'category-title-active' : 'category-title']}
+          className={classes[selectedCategory === category ? CATEGORY_TYPE.ACTIVE : CATEGORY_TYPE.INACTIVE]}
         >
           {formatFirstLetterToUpperCase(category)}
         </h6>

@@ -425,6 +425,190 @@
       },
       "totalPrice": 350,
       "id": 11
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 2,
+            "imageUrl": "https://pbs.twimg.com/media/EL--sgSXYAAnOX2.jpg",
+            "title": "YouTube for your business!",
+            "price": 400,
+            "quantity": 1,
+            "totalPrice": 400
+          },
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          },
+          {
+            "id": 10,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/5/4/c/f/600_477021711.jpeg",
+            "title": "The New React Way",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          },
+          {
+            "id": 6,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg",
+            "title": "Be nice! Help the person who hacks your servers to get data",
+            "price": 500,
+            "quantity": 1,
+            "totalPrice": 500
+          },
+          {
+            "id": 5,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg",
+            "title": "Leadership as a joke",
+            "price": 500,
+            "quantity": 1,
+            "totalPrice": 500
+          },
+          {
+            "id": 7,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg",
+            "title": "Data-driven design",
+            "price": 650,
+            "quantity": 1,
+            "totalPrice": 650
+          }
+        ],
+        "totalQuantity": 6,
+        "totalCartPrice": 2750
+      },
+      "totalPrice": 2750,
+      "id": 12
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 4,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg",
+            "title": "Fighting E-Commerce Sameness",
+            "price": 450,
+            "quantity": 1,
+            "totalPrice": 450
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 450
+      },
+      "totalPrice": 450,
+      "id": 13
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 4,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg",
+            "title": "Fighting E-Commerce Sameness",
+            "price": 450,
+            "quantity": 1,
+            "totalPrice": 450
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 450
+      },
+      "totalPrice": 450,
+      "id": 14
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 23,
+            "totalPrice": 8050
+          }
+        ],
+        "totalQuantity": 23,
+        "totalCartPrice": 8050
+      },
+      "totalPrice": 8050,
+      "id": 15
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 16
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 1,
+            "imageUrl": "https://pbs.twimg.com/media/EREoip3XsAEPDRp.jpg",
+            "title": "When you get lost in API testing",
+            "price": 350,
+            "quantity": 1,
+            "totalPrice": 350
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 350
+      },
+      "totalPrice": 350,
+      "id": 17
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 2,
+            "imageUrl": "https://pbs.twimg.com/media/EL--sgSXYAAnOX2.jpg",
+            "title": "YouTube for your business!",
+            "price": 400,
+            "quantity": 1,
+            "totalPrice": 400
+          }
+        ],
+        "totalQuantity": 1,
+        "totalCartPrice": 400
+      },
+      "totalPrice": 400,
+      "id": 18
+    },
+    {
+      "products": {
+        "items": [
+          {
+            "id": 3,
+            "imageUrl": "https://secure.meetupstatic.com/photos/event/2/d/8/e/highres_482651662.jpeg",
+            "title": "Voice - The new Frontend",
+            "price": 375,
+            "quantity": 3,
+            "totalPrice": 1125
+          }
+        ],
+        "totalQuantity": 3,
+        "totalCartPrice": 1125
+      },
+      "totalPrice": 1125,
+      "id": 19
     }
   ],
   "categories": [

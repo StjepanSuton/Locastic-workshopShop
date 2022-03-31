@@ -38,7 +38,7 @@ function SingleItemPage() {
       }
     }
     getWorkshopData()
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if (workshop) {
@@ -62,7 +62,7 @@ function SingleItemPage() {
     <>
       {loading && (
         <div className={classes.loader}>
-          <LoadingSpiner />
+          <LoadingSpiner selectedClass={'spinner-large'} />
         </div>
       )}
       {!loading && error && <h2 className={classes.error}>{error}</h2>}

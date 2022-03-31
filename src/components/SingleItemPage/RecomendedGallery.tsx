@@ -4,33 +4,27 @@ import { WorkshopData } from '../Reusables/reusableInterfaces'
 import classes from './RecomendedGallery.module.scss'
 
 function RecomendedGallery({ category, id }: { category: string; id: number }) {
-  const [loading, setLoading] = useState(true)
   const [workshops, setWorkshops] = useState<WorkshopData[] | null>(null)
-  const [workshopsError, setWorksopsError] = useState<string | null>(null)
 
   useEffect(() => {
     const getWorkshopData = async () => {
-      setLoading(true)
       try {
         const response = await fetch(`http://localhost:3000/workshops/`)
         const json: WorkshopData[] = await response.json()
         if (!response.ok) {
           throw Error(JSON.stringify(response.status))
         }
-        setLoading(false)
+
         setWorkshops(
           json
             .filter((workshop) => workshop.category === category)
             .filter((workshop) => workshop.id !== id)
             .slice(0, 3)
         )
-      } catch (err) {
-        setLoading(false)
-        setWorksopsError('Oops looks like something went wrong try reloading the page \n' + err)
-      }
+      } catch (err) {}
     }
     getWorkshopData()
-  }, [])
+  }, [category, id])
 
   return (
     <div className={classes['recomended-container']}>

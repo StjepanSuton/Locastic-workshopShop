@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { DEFAULT_CATEGORY } from '../components/Reusables/defaultValues'
 
 interface Category {
   selectedCategory: string
   categorysShowing: number
 }
-
-const DEFAULT_CATEGORY = 'all'
 
 const initialState: Category = {
   selectedCategory: DEFAULT_CATEGORY,

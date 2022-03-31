@@ -8,6 +8,7 @@ import LoadingSpiner from '../../Reusables/LoadingSpiner'
 import { WorkshopData } from '../../Reusables/reusableInterfaces'
 import { categoryActions } from '../../../store/categoryStore'
 import { uiActions } from '../../../store/uiStore'
+import { DEFAULT_CATEGORY } from '../../Reusables/defaultValues'
 
 function ShopGallery() {
   const dispatch = useDispatch()
@@ -19,8 +20,6 @@ function ShopGallery() {
   const [filteredWorkshops, setFilteredWorkshops] = useState<WorkshopData[] | null>(null)
   const shownWorkshops = useSelector((state: RootState) => state.categorys.categorysShowing)
   const selectedCategory = useSelector((state: RootState) => state.categorys.selectedCategory)
-
-  const DEFAULT_CATEGORY = 'all'
 
   //Animation settings
   const container = {
@@ -95,7 +94,7 @@ function ShopGallery() {
           })
         dispatch(uiActions.setScrollTarget(''))
       }, 500)
-  }, [workshops])
+  }, [workshops, dispatch, idToScrollTo])
 
   const calculateDisplayedWorkshops = () => {
     return filteredWorkshops?.slice(0, shownWorkshops).length
@@ -105,7 +104,7 @@ function ShopGallery() {
     <>
       {loading && (
         <div className={classes.loader}>
-          <LoadingSpiner />
+          <LoadingSpiner selectedClass={'spinner-large'} />
         </div>
       )}
       {error && <h2 className={classes.error}>{error}</h2>}

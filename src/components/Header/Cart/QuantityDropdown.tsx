@@ -1,15 +1,17 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { cartActions } from '../../../store/cartStore'
 import classes from './QuantityDropdown.module.scss'
 import arrowDownIcon from '../../../assets/arrowdown.svg'
 import { Item } from '../../Reusables/reusableInterfaces'
-
+import QuantityGenerator from '../../Reusables/QuantityGenerator'
+import { useDispatch } from 'react-redux'
+import { cartActions } from '../../../store/cartStore'
 
 function QuantityDropdown({ item }: { item: Item }) {
   const [showDropdown, setShowDropdown] = useState(false)
-  const { id, imageUrl, title, quantity, price } = item
+  const { quantity } = item
+
+  const { id, imageUrl, title, price } = item
 
   const dispatch = useDispatch()
 
@@ -24,14 +26,6 @@ function QuantityDropdown({ item }: { item: Item }) {
         totalPrice: n * price,
       })
     )
-  }
-
-  const quantityOptionsGenerator = () => {
-    return [...Array(99).fill(1)].map((number, i) => (
-      <div key={number + i} onClick={() => changeQuantityHandler(number + i)} className={classes.option}>
-        <label>{number + i}</label>
-      </div>
-    ))
   }
 
   return (
@@ -49,7 +43,7 @@ function QuantityDropdown({ item }: { item: Item }) {
             transition={{ duration: 0.5 }}
             className={classes['options-container']}
           >
-            {quantityOptionsGenerator()}
+            <QuantityGenerator method={changeQuantityHandler} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,7 +1,7 @@
 import classes from './LoadingSpinner.module.scss'
 
-function LoadingSpiner() {
-  return <div className={classes['lds-dual-ring']}></div>
+function LoadingSpiner({ selectedClass }: { selectedClass: string }) {
+  return <div className={classes[selectedClass]}></div>
 }
 
 export default LoadingSpiner

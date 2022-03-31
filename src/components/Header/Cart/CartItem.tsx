@@ -6,6 +6,7 @@ import { cartActions } from '../../../store/cartStore'
 import QuantityDropdown from './QuantityDropdown'
 import { formatToLocalCurrency } from '../../Reusables/formaters'
 import { Item } from '../../Reusables/reusableInterfaces'
+import { DEFAULT_CURRENCY } from '../../Reusables/defaultValues'
 
 function CartItem({ item }: { item: Item }) {
   const { id, imageUrl, title, totalPrice } = item
@@ -33,7 +34,7 @@ function CartItem({ item }: { item: Item }) {
           <QuantityDropdown item={item} />
           <h3>
             {formatToLocalCurrency(totalPrice)}
-            <span>EUR</span>
+            <span>{DEFAULT_CURRENCY}</span>
           </h3>
         </div>
         <motion.div onClick={removeItem} whileTap={{ scale: 1.1 }} className={classes['delete-icon']}>
